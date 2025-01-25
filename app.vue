@@ -1,8 +1,7 @@
 <template>
 	<div
-		class="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black text-gray-800 dark:text-gray-200"
+		class="min-h-screen bg-light-pattern dark:bg-gradient-to-b dark:from-gray-900 dark:via-gray-900 dark:to-blue-900/10"
 	>
-		<!-- 导航栏 -->
 		<nav
 			class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-gray-800/80 dark:border-gray-700"
 		>
@@ -58,16 +57,25 @@
 		</div>
 
 		<!-- 首页Banner -->
-		<section class="h-screen flex items-center justify-center relative overflow-hidden">
+		<section
+			class="h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-transparent via-blue-50/30 to-purple-50/30 dark:via-blue-900/10 dark:to-purple-900/10"
+		>
 			<div class="container mx-auto px-6 text-center">
-				<h2
-					class="text-6xl font-bold mb-6 animate-fade-in-up bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600"
-				>
-					探索数字宇宙
+				<h2 ref="titleRef" class="text-6xl md:text-7xl font-bold mb-6 drop-shadow-sm">
+					<span
+						v-for="(char, index) in title"
+						:key="index"
+						class="inline-block transform transition-all duration-300 bg-clip-text text-transparent bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400"
+						:style="{
+							opacity: charOpacity[index] ? 1 : 0,
+							transform: charOpacity[index] ? 'translateY(0)' : 'translateY(20px)',
+						}"
+						>{{ char }}</span
+					>
 				</h2>
-				<p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto dark:text-gray-300">创新 · 协作 · 未来</p>
+				<p class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto dark:text-gray-200">创新 · 协作 · 未来</p>
 				<button
-					class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg"
+					class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg"
 				>
 					加入我们
 				</button>
@@ -198,6 +206,7 @@
 
 <script setup>
 import { ref, watch, onMounted } from "vue";
+import gsap from "gsap";
 
 const isDarkMode = ref(false);
 
@@ -221,6 +230,44 @@ onMounted(() => {
 		isDarkMode.value = e.matches;
 		updateTheme();
 	});
+
+	// 创建GSAP上下文
+	const ctx = gsap.context(() => {
+		// 获取所有标题字符
+		const chars = titleRef.value.querySelectorAll("span");
+
+		// 设置初始状态
+		gsap.set(chars, {
+			yPercent: 100,
+			opacity: 0,
+		});
+
+		// 创建打字机动画
+		gsap.to(chars, {
+			duration: 0.8,
+			yPercent: 0,
+			opacity: 1,
+			stagger: 0.1, // 每个字符之间的延迟
+			ease: "back.out(1.7)", // 使用回弹效果
+			onComplete: () => {
+				// 添加一个微小的抖动动画
+				gsap.to(chars, {
+					duration: 0.1,
+					y: "-=2",
+					yoyo: true,
+					repeat: 1,
+					ease: "power1.inOut",
+					stagger: {
+						amount: 0.2,
+						from: "random",
+					},
+				});
+			},
+		});
+	}, titleRef);
+
+	// 清理函数
+	return () => ctx.revert();
 });
 
 // 更新主题
@@ -249,22 +296,22 @@ const navLinks = [
 
 const features = [
 	{
-		icon: "ph:code",
+		icon: "ph:code-bold",
 		title: "前沿技术",
 		desc: "掌握最新开发工具与框架",
 	},
 	{
-		icon: "ph:lightbulb",
+		icon: "ph:lightbulb-bold",
 		title: "创新项目",
 		desc: "参与多个创新项目的开发",
 	},
 	{
-		icon: "ph:users",
+		icon: "ph:users-bold",
 		title: "团队合作",
 		desc: "与团队成员合作完成项目",
 	},
 	{
-		icon: "ph:graduation-cap",
+		icon: "ph:graduation-cap-bold",
 		title: "实践经验",
 		desc: "获得实践经验和技能提升",
 	},
@@ -315,6 +362,37 @@ const scrollToSection = (href) => {
 		el.scrollIntoView({ behavior: "smooth" });
 	}
 };
+
+const titleRef = ref(null);
+
+// 定义标题文字和字符透明度数组
+const title = "探索数字宇宙".split("");
+const charOpacity = ref(new Array(title.length).fill(false));
+
+// 在组件挂载时执行打字机效果
+onMounted(() => {
+	// 逐个显示字符
+	title.forEach((_, index) => {
+		setTimeout(() => {
+			charOpacity.value[index] = true;
+		}, index * 150); // 每个字符之间间隔 150ms
+	});
+
+	// 添加完成后的弹跳效果
+	setTimeout(() => {
+		const chars = titleRef.value.querySelectorAll("span");
+		gsap.from(chars, {
+			y: -4,
+			stagger: {
+				amount: 0.3,
+				from: "random",
+			},
+			ease: "elastic.out(1, 0.2)",
+			duration: 0.8,
+			delay: title.length * 0.15 + 0.2, // 等待所有字符显示完成后再执行
+		});
+	}, title.length * 100);
+});
 </script>
 
 <style>
@@ -452,5 +530,116 @@ nav {
 .bg-gray-50,
 .dark\:bg-gray-900 {
 	transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* 添加到现有的 style 标签中 */
+.inline-block {
+	display: inline-block;
+	overflow: hidden;
+}
+
+/* 添加字符动画样式 */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.char-animate {
+	animation: fadeInUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 添加字符动画相关样式 */
+.char-enter-active {
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.char-enter-from {
+	opacity: 0;
+	transform: translateY(20px);
+}
+
+.char-enter-to {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* 为标题字符添加悬停效果 */
+h2 span {
+	display: inline-block;
+	cursor: default;
+}
+
+h2 span:hover {
+	animation: bounce 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+	background-image: linear-gradient(to right bottom, #3b82f6, #6366f1, #8b5cf6);
+	-webkit-background-clip: text;
+	background-clip: text;
+}
+
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+}
+
+/* 添加背景动画过渡 */
+.bg-gradient-to-b,
+.bg-gradient-to-br {
+	background-size: 200% 200%;
+	transition: background-position 0.5s ease-in-out;
+}
+
+.bg-gradient-to-b:hover,
+.bg-gradient-to-br:hover {
+	background-position: 0 100%;
+}
+
+/* 优化按钮悬停效果 */
+button.bg-gradient-to-r {
+	background-size: 200% auto;
+	transition: all 0.3s ease;
+}
+
+button.bg-gradient-to-r:hover {
+	background-position: right center;
+}
+
+/* 添加轻量级的背景纹理 */
+.bg-light-pattern {
+	background-color: #ffffff;
+	background-image: linear-gradient(45deg, #f1f5f9 25%, transparent 25%),
+		linear-gradient(-45deg, #f1f5f9 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f1f5f9 75%),
+		linear-gradient(-45deg, transparent 75%, #f1f5f9 75%);
+	background-size: 20px 20px;
+	background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* 添加微妙的渐变叠加 */
+.bg-light-pattern::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(120deg, rgba(96, 165, 250, 0.03), rgba(139, 92, 246, 0.03));
+	pointer-events: none;
+}
+
+/* 优化性能 */
+.bg-light-pattern,
+.bg-light-pattern::before {
+	will-change: transform;
+	transform: translateZ(0);
 }
 </style>
