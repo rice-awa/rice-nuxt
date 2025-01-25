@@ -1,7 +1,8 @@
 <template>
 	<div
-		class="min-h-screen bg-light-pattern dark:bg-gradient-to-b dark:from-gray-900 dark:via-gray-900 dark:to-blue-900/10"
+		class="min-h-screen bg-gradient-to-b from-gray-50/80 via-white to-blue-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900/10"
 	>
+		<!-- 导航栏 -->
 		<nav
 			class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-gray-800/80 dark:border-gray-700"
 		>
@@ -612,34 +613,5 @@ button.bg-gradient-to-r {
 
 button.bg-gradient-to-r:hover {
 	background-position: right center;
-}
-
-/* 添加轻量级的背景纹理 */
-.bg-light-pattern {
-	background-color: #ffffff;
-	background-image: linear-gradient(45deg, #f1f5f9 25%, transparent 25%),
-		linear-gradient(-45deg, #f1f5f9 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f1f5f9 75%),
-		linear-gradient(-45deg, transparent 75%, #f1f5f9 75%);
-	background-size: 20px 20px;
-	background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-}
-
-/* 添加微妙的渐变叠加 */
-.bg-light-pattern::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: linear-gradient(120deg, rgba(96, 165, 250, 0.03), rgba(139, 92, 246, 0.03));
-	pointer-events: none;
-}
-
-/* 优化性能 */
-.bg-light-pattern,
-.bg-light-pattern::before {
-	will-change: transform;
-	transform: translateZ(0);
 }
 </style>
