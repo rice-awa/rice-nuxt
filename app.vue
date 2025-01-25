@@ -1,60 +1,21 @@
 <template>
-	<div class="min-h-screen">
-		<!-- Banner背景 -->
-		<div class="fixed top-0 left-0 right-0 h-screen pointer-events-none">
-			<div
-				class="h-full bg-gradient-to-b from-white via-[#5382DB]/40 to-[#5382DB]/30 dark:from-gray-900 dark:via-[#5382DB]/30 dark:to-transparent"
-			></div>
-		</div>
-
-		<!-- 内容容器 -->
-		<div class="relative z-10">
-			<!-- 导航栏 -->
-			<nav
-				class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-gray-800/80 dark:border-gray-700"
-			>
-				<div class="container mx-auto px-6">
-					<div class="flex justify-between items-center h-16">
-						<!-- Logo -->
-						<div class="flex items-center">
-							<h1 class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-								全栈<span class="font-extrabold">FULLSTACK</span>
-							</h1>
-						</div>
-
-						<!-- 导航链接 -->
-						<div class="hidden md:flex items-center space-x-8">
-							<NuxtLink
-								v-for="(link, index) in navLinks"
-								:key="index"
-								:to="link.href"
-								class="text-gray-600 hover:text-blue-500 transition-all duration-300 text-sm font-medium nav-link dark:text-gray-300 dark:hover:text-blue-400"
-								@click.prevent="scrollToSection(link.href)"
-							>
-								{{ link.text }}
-							</NuxtLink>
-
-							<!-- 主题切换按钮 -->
-							<button
-								@click="toggleDarkMode"
-								class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-							>
-								<svg v-if="isDarkMode" class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-									<path
-										fill-rule="evenodd"
-										d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-										clip-rule="evenodd"
-									/>
-								</svg>
-								<svg v-else class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-									<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-								</svg>
-							</button>
-						</div>
+	<div
+		class="min-h-screen bg-gradient-to-b from-gray-50/80 via-white to-blue-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-blue-900/10"
+	>
+		<!-- 导航栏 -->
+		<nav
+			class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-gray-800/80 dark:border-gray-700"
+		>
+			<div class="container mx-auto px-6">
+				<div class="flex justify-between items-center h-16">
+					<!-- Logo -->
+					<div class="flex items-center">
+						<h1 class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+							全栈<span class="font-extrabold">TECH</span>
+						</h1>
 					</div>
-				</div>
-			</nav>
 
+<<<<<<< HEAD
 			<!-- 移动端菜单按钮 -->
 			<div class="md:hidden fixed top-4 right-4 z-50">
 				<button class="p-2 bg-gray-100 rounded-lg dark:bg-gray-800" @click="isMobileMenuOpen = !isMobileMenuOpen">
@@ -156,126 +117,195 @@
 					<div class="container mx-auto px-6 grid md:grid-cols-4 gap-8">
 						<div
 							v-for="(feature, index) in features"
+=======
+					<!-- 导航链接 -->
+					<div class="hidden md:flex items-center space-x-8">
+						<NuxtLink
+							v-for="(link, index) in navLinks"
+>>>>>>> parent of c5da3a8 (更新界面)
 							:key="index"
-							class="p-8 bg-white rounded-xl hover:shadow-xl transition-all border border-gray-100 dark:bg-gray-800 dark:border-gray-700"
+							:to="link.href"
+							class="text-gray-600 hover:text-blue-500 transition-all duration-300 text-sm font-medium nav-link dark:text-gray-300 dark:hover:text-blue-400"
+							@click.prevent="scrollToSection(link.href)"
 						>
-							<div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-								<Icon :name="feature.icon" class="w-8 h-8 text-blue-500" />
-							</div>
-							<h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-300">{{ feature.title }}</h3>
-							<p class="text-gray-600 dark:text-gray-400">{{ feature.desc }}</p>
-						</div>
-					</div>
-				</section>
+							{{ link.text }}
+						</NuxtLink>
 
-				<!-- 近期活动 -->
-				<section id="activities" class="py-20 bg-gray-50 dark:bg-gray-900">
-					<div class="container mx-auto px-6">
-						<h2 class="text-4xl font-bold mb-12 text-center text-gray-900 dark:text-gray-300">近期活动</h2>
-						<div class="grid lg:grid-cols-3 gap-8">
-							<div
-								v-for="activity in activities"
-								:key="activity.title"
-								class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all dark:bg-gray-800"
-							>
-								<div class="w-full h-48 bg-blue-100 rounded-lg mb-6 overflow-hidden">
-									<img :src="activity.image" :alt="activity.title" class="w-full h-full object-cover" />
-								</div>
-								<h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-300">{{ activity.title }}</h3>
-								<p class="text-gray-600 mb-4 dark:text-gray-400">{{ activity.desc }}</p>
-								<p class="text-blue-500">{{ activity.date }}</p>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<!-- 发展历程 -->
-				<section id="timeline" class="py-20">
-					<div class="container mx-auto px-6">
-						<h2 class="text-4xl font-bold mb-12 text-center text-gray-900 dark:text-gray-300">发展历程</h2>
-						<div class="space-y-8">
-							<div v-for="item in timeline" :key="item.year" class="flex items-center gap-8 group">
-								<div class="text-3xl font-bold text-blue-500 w-24">{{ item.year }}</div>
-								<div
-									class="flex-1 p-6 bg-white rounded-xl shadow-lg group-hover:shadow-xl transition-all dark:bg-gray-800"
-								>
-									<h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-300">{{ item.title }}</h3>
-									<p class="text-gray-600 dark:text-gray-400">{{ item.desc }}</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<!-- 加入我们 -->
-				<section id="join" class="py-32 text-center bg-gray-50 dark:bg-gray-900">
-					<div class="container mx-auto px-6">
-						<h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-gray-300">加入全栈信息处理协会</h2>
-						<p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto dark:text-gray-400">
-							加入我们，一起探索技术的无限可能
-						</p>
+						<!-- 主题切换按钮 -->
 						<button
-							class="bg-blue-500 hover:bg-blue-600 text-white px-12 py-4 rounded-full text-lg transition-all transform hover:scale-105 shadow-xl"
+							@click="toggleDarkMode"
+							class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
 						>
-							立即加入
+							<svg v-if="isDarkMode" class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+								<path
+									fill-rule="evenodd"
+									d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+									clip-rule="evenodd"
+								/>
+							</svg>
+							<svg v-else class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+							</svg>
 						</button>
 					</div>
-				</section>
+				</div>
+			</div>
+		</nav>
 
-				<!-- 页脚 -->
-				<footer class="bg-gray-900 text-gray-400 py-12">
-					<div class="container mx-auto px-4">
-						<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-							<!-- 资源 -->
-							<div>
-								<h3 class="text-white text-lg font-semibold mb-4">资源</h3>
-								<ul class="space-y-2">
-									<li><NuxtLink to="/support" class="hover:text-white">支持</NuxtLink></li>
-									<li><NuxtLink to="/blog" class="hover:text-white">博客</NuxtLink></li>
-									<li><NuxtLink to="/security" class="hover:text-white">安全</NuxtLink></li>
-								</ul>
-							</div>
+		<!-- 移动端菜单按钮 -->
+		<div class="md:hidden fixed top-4 right-4 z-50">
+			<button class="p-2 bg-gray-100 rounded-lg">
+				<svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"></path>
+				</svg>
+			</button>
+		</div>
 
-							<!-- 开发人员 -->
-							<div>
-								<h3 class="text-white text-lg font-semibold mb-4">开发人员</h3>
-								<ul class="space-y-2">
-									<li><NuxtLink to="/api" class="hover:text-white">API 文档</NuxtLink></li>
-									<li><NuxtLink to="/teams-api" class="hover:text-white">Teams API</NuxtLink></li>
-									<li><NuxtLink to="/docs" class="hover:text-white">开发指南</NuxtLink></li>
-								</ul>
-							</div>
+		<!-- 首页Banner -->
+		<section
+			class="h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-transparent via-blue-50/30 to-purple-50/30 dark:via-blue-900/10 dark:to-purple-900/10"
+		>
+			<div class="container mx-auto px-6 text-center">
+				<h2 ref="titleRef" class="text-6xl md:text-7xl font-bold mb-6 drop-shadow-sm">
+					<span
+						v-for="(char, index) in title"
+						:key="index"
+						class="inline-block transform transition-all duration-300 bg-clip-text text-transparent bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400"
+						:style="{
+							opacity: charOpacity[index] ? 1 : 0,
+							transform: charOpacity[index] ? 'translateY(0)' : 'translateY(20px)',
+						}"
+						>{{ char }}</span
+					>
+				</h2>
+				<p class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto dark:text-gray-200">创新 · 协作 · 未来</p>
+				<button
+					class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg"
+				>
+					加入我们
+				</button>
+			</div>
+		</section>
 
-							<!-- 关于 -->
-							<div>
-								<h3 class="text-white text-lg font-semibold mb-4">关于</h3>
-								<ul class="space-y-2">
-									<li><NuxtLink to="/about" class="hover:text-white">关于我们</NuxtLink></li>
-								</ul>
-							</div>
+		<!-- 社团特色 -->
+		<section id="features" class="py-20">
+			<div class="container mx-auto px-6 grid md:grid-cols-4 gap-8">
+				<div
+					v-for="(feature, index) in features"
+					:key="index"
+					class="p-8 bg-white rounded-xl hover:shadow-xl transition-all border border-gray-100 dark:bg-gray-800 dark:border-gray-700"
+				>
+					<div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+						<Icon :name="feature.icon" class="w-8 h-8 text-blue-500" />
+					</div>
+					<h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-300">{{ feature.title }}</h3>
+					<p class="text-gray-600 dark:text-gray-400">{{ feature.desc }}</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- 近期活动 -->
+		<section id="activities" class="py-20 bg-gray-50 dark:bg-gray-900">
+			<div class="container mx-auto px-6">
+				<h2 class="text-4xl font-bold mb-12 text-center text-gray-900 dark:text-gray-300">近期活动</h2>
+				<div class="grid lg:grid-cols-3 gap-8">
+					<div
+						v-for="activity in activities"
+						:key="activity.title"
+						class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all dark:bg-gray-800"
+					>
+						<div class="w-full h-48 bg-blue-100 rounded-lg mb-6 overflow-hidden">
+							<img :src="activity.image" :alt="activity.title" class="w-full h-full object-cover" />
 						</div>
+						<h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-300">{{ activity.title }}</h3>
+						<p class="text-gray-600 mb-4 dark:text-gray-400">{{ activity.desc }}</p>
+						<p class="text-blue-500">{{ activity.date }}</p>
+					</div>
+				</div>
+			</div>
+		</section>
 
-						<div class="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-							<div class="text-sm">© 2024 全栈信息处理协会. 保留所有权利.</div>
-							<div class="flex space-x-6 mt-4 md:mt-0">
-								<a href="#" class="text-gray-400 hover:text-white">
-									<span class="sr-only">Facebook</span>
-									<i class="fab fa-facebook"></i>
-								</a>
-								<a href="#" class="text-gray-400 hover:text-white">
-									<span class="sr-only">Twitter</span>
-									<i class="fab fa-twitter"></i>
-								</a>
-								<a href="#" class="text-gray-400 hover:text-white">
-									<span class="sr-only">GitHub</span>
-									<i class="fab fa-github"></i>
-								</a>
-							</div>
+		<!-- 发展历程 -->
+		<section id="timeline" class="py-20">
+			<div class="container mx-auto px-6">
+				<h2 class="text-4xl font-bold mb-12 text-center text-gray-900 dark:text-gray-300">发展历程</h2>
+				<div class="space-y-8">
+					<div v-for="item in timeline" :key="item.year" class="flex items-center gap-8 group">
+						<div class="text-3xl font-bold text-blue-500 w-24">{{ item.year }}</div>
+						<div class="flex-1 p-6 bg-white rounded-xl shadow-lg group-hover:shadow-xl transition-all dark:bg-gray-800">
+							<h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-300">{{ item.title }}</h3>
+							<p class="text-gray-600 dark:text-gray-400">{{ item.desc }}</p>
 						</div>
 					</div>
-				</footer>
+				</div>
 			</div>
-		</div>
+		</section>
+
+		<!-- 加入我们 -->
+		<section id="join" class="py-32 text-center bg-gray-50 dark:bg-gray-900">
+			<div class="container mx-auto px-6">
+				<h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-gray-300">加入全栈信息处理协会</h2>
+				<p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto dark:text-gray-400">加入我们，一起探索技术的无限可能</p>
+				<button
+					class="bg-blue-500 hover:bg-blue-600 text-white px-12 py-4 rounded-full text-lg transition-all transform hover:scale-105 shadow-xl"
+				>
+					立即加入
+				</button>
+			</div>
+		</section>
+
+		<!-- 页脚 -->
+		<footer class="bg-gray-900 text-gray-400 py-12">
+			<div class="container mx-auto px-4">
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<!-- 资源 -->
+					<div>
+						<h3 class="text-white text-lg font-semibold mb-4">资源</h3>
+						<ul class="space-y-2">
+							<li><NuxtLink to="/support" class="hover:text-white">支持</NuxtLink></li>
+							<li><NuxtLink to="/blog" class="hover:text-white">博客</NuxtLink></li>
+							<li><NuxtLink to="/security" class="hover:text-white">安全</NuxtLink></li>
+						</ul>
+					</div>
+
+					<!-- 开发人员 -->
+					<div>
+						<h3 class="text-white text-lg font-semibold mb-4">开发人员</h3>
+						<ul class="space-y-2">
+							<li><NuxtLink to="/api" class="hover:text-white">API 文档</NuxtLink></li>
+							<li><NuxtLink to="/teams-api" class="hover:text-white">Teams API</NuxtLink></li>
+							<li><NuxtLink to="/docs" class="hover:text-white">开发指南</NuxtLink></li>
+						</ul>
+					</div>
+
+					<!-- 关于 -->
+					<div>
+						<h3 class="text-white text-lg font-semibold mb-4">关于</h3>
+						<ul class="space-y-2">
+							<li><NuxtLink to="/about" class="hover:text-white">关于我们</NuxtLink></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+					<div class="text-sm">© 2024 全栈信息处理协会. 保留所有权利.</div>
+					<div class="flex space-x-6 mt-4 md:mt-0">
+						<a href="#" class="text-gray-400 hover:text-white">
+							<span class="sr-only">Facebook</span>
+							<i class="fab fa-facebook"></i>
+						</a>
+						<a href="#" class="text-gray-400 hover:text-white">
+							<span class="sr-only">Twitter</span>
+							<i class="fab fa-twitter"></i>
+						</a>
+						<a href="#" class="text-gray-400 hover:text-white">
+							<span class="sr-only">GitHub</span>
+							<i class="fab fa-github"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</div>
 </template>
 
@@ -284,14 +314,6 @@ import { ref, watch, onMounted } from "vue";
 import gsap from "gsap";
 
 const isDarkMode = ref(false);
-// 将 isMobileMenuOpen 移到顶层作用域
-const isMobileMenuOpen = ref(false);
-
-// 处理移动端导航点击
-const handleMobileNavClick = (href) => {
-	scrollToSection(href);
-	isMobileMenuOpen.value = false;
-};
 
 // 在组件挂载时初始化主题
 onMounted(() => {
@@ -321,65 +343,33 @@ onMounted(() => {
 
 		// 设置初始状态
 		gsap.set(chars, {
+			yPercent: 100,
 			opacity: 0,
-			y: 40, // 初始位置略微向下，增加幅度
 		});
 
-		// 创建时间轴
-		const tl = gsap.timeline();
-
-		// 第一行文字动画
-		const line1Chars = titleRef.value.querySelectorAll(".line1-char");
-		tl.to(line1Chars, {
-			duration: 0.6, // 动画持续时间
-			opacity: 1, // 目标透明度
-			y: 0, // 目标位置
-			stagger: 0.1, // 字符之间的延迟
-			ease: "power2.out", // 动画缓动效果
-		})
-			// 第二行文字动画
-			.to(
-				titleRef.value.querySelectorAll(".line2-char"),
-				{
-					duration: 0.6, // 动画持续时间
-					opacity: 1, // 目标透明度
-					y: 0, // 目标位置
-					stagger: 0.05, // 字符之间的延迟
-					ease: "power2.out", // 动画缓动效果
-				},
-				"-=0.3" // 与前一个动画重叠的时间
-			)
-			// 所有字符的下落动画
-			.to(
-				chars,
-				{
-					duration: 0.8, // 动画持续时间
-					y: "+=20", // 向下移动的距离
-					ease: "elastic.out(1, 0.4)", // 动画缓动效果
+		// 创建打字机动画
+		gsap.to(chars, {
+			duration: 0.8,
+			yPercent: 0,
+			opacity: 1,
+			stagger: 0.1, // 每个字符之间的延迟
+			ease: "back.out(1.7)", // 使用回弹效果
+			onComplete: () => {
+				// 添加一个微小的抖动动画
+				gsap.to(chars, {
+					duration: 0.1,
+					y: "-=2",
+					yoyo: true,
+					repeat: 1,
+					ease: "power1.inOut",
 					stagger: {
-						amount: 0.5, // 随机下落的时间
-						from: "random", // 从随机字符开始
+						amount: 0.2,
+						from: "random",
 					},
-				},
-				"+=0.4" // 等待时间后开始下落动画
-			);
+				});
+			},
+		});
 	}, titleRef);
-
-	// 监听滚动以关闭菜单
-	window.addEventListener("scroll", () => {
-		if (isMobileMenuOpen.value) {
-			isMobileMenuOpen.value = false;
-		}
-	});
-
-	// 监听菜单状态变化
-	watch(isMobileMenuOpen, (isOpen) => {
-		if (isOpen) {
-			document.body.classList.add("overflow-hidden");
-		} else {
-			document.body.classList.remove("overflow-hidden");
-		}
-	});
 
 	// 清理函数
 	return () => ctx.revert();
@@ -481,10 +471,33 @@ const scrollToSection = (href) => {
 const titleRef = ref(null);
 
 // 定义标题文字和字符透明度数组
-const titleLines = {
-	line1: "探索数字宇宙".split(""),
-	line2: "FULLSTACK".split(""),
-};
+const title = "探索数字宇宙".split("");
+const charOpacity = ref(new Array(title.length).fill(false));
+
+// 在组件挂载时执行打字机效果
+onMounted(() => {
+	// 逐个显示字符
+	title.forEach((_, index) => {
+		setTimeout(() => {
+			charOpacity.value[index] = true;
+		}, index * 150); // 每个字符之间间隔 150ms
+	});
+
+	// 添加完成后的弹跳效果
+	setTimeout(() => {
+		const chars = titleRef.value.querySelectorAll("span");
+		gsap.from(chars, {
+			y: -4,
+			stagger: {
+				amount: 0.3,
+				from: "random",
+			},
+			ease: "elastic.out(1, 0.2)",
+			duration: 0.8,
+			delay: title.length * 0.15 + 0.2, // 等待所有字符显示完成后再执行
+		});
+	}, title.length * 100);
+});
 </script>
 
 <style>
@@ -553,7 +566,7 @@ button {
 	}
 
 	h1 {
-		font-size: clamp(1.5rem, 10vw, 5rem);
+		font-size: 1.5rem;
 	}
 
 	.nav-link {
@@ -673,11 +686,18 @@ h2 span {
 }
 
 h2 span:hover {
+<<<<<<< HEAD
 	animation: bounce 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 h2 span:not(:hover) {
 	animation: fall 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+=======
+	animation: bounce 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+	background-image: linear-gradient(to right bottom, #3b82f6, #6366f1, #8b5cf6);
+	-webkit-background-clip: text;
+	background-clip: text;
+>>>>>>> parent of c5da3a8 (更新界面)
 }
 
 @keyframes bounce {
@@ -711,6 +731,7 @@ button.bg-gradient-to-r {
 button.bg-gradient-to-r:hover {
 	background-position: right center;
 }
+<<<<<<< HEAD
 
 /* 防止移动端菜单打开时页面滚动 */
 .overflow-hidden {
@@ -809,4 +830,6 @@ nav {
 .line2-char:hover {
 	animation: bounce 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+=======
+>>>>>>> parent of c5da3a8 (更新界面)
 </style>
