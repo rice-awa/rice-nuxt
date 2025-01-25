@@ -128,7 +128,7 @@
 							<span
 								v-for="(char, index) in titleLines.line1"
 								:key="`line1-${index}`"
-								class="line1-char inline-block bg-clip-text text-transparent bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400"
+								class="line1-char inline-block bg-clip-text text-transparent bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 hover:bounce"
 								>{{ char }}</span
 							>
 						</div>
@@ -136,7 +136,7 @@
 							<span
 								v-for="(char, index) in titleLines.line2"
 								:key="`line2-${index}`"
-								class="line2-char inline-block bg-clip-text text-transparent bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400"
+								class="line2-char inline-block bg-clip-text text-transparent bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400 hover:bounce"
 								>{{ char }}</span
 							>
 						</div>
@@ -666,12 +666,18 @@ h2 span {
 	display: inline-block;
 	cursor: default;
 }
+.h2-span-hover,
+.h2-span-leave {
+	display: inline-block;
+	cursor: default;
+}
 
 h2 span:hover {
-	animation: bounce 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-	background-image: linear-gradient(to right bottom, #3b82f6, #6366f1, #8656f6);
-	-webkit-background-clip: text;
-	background-clip: text;
+	animation: bounce 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+h2 span:not(:hover) {
+	animation: fall 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes bounce {
@@ -787,5 +793,20 @@ nav {
 /* 深色模式过渡 */
 :root {
 	transition: background-color 0.3s ease;
+}
+
+/* 添加标题字符的悬停效果 */
+@keyframes bounce {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-10px);
+	}
+}
+
+.line1-char:hover,
+.line2-char:hover {
+	animation: bounce 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 </style>
