@@ -387,7 +387,7 @@ const timeline = [
 		desc: "成功举办校园首届黑客马拉松大赛",
 	},
 	{
-		year: "2021",
+		year: "2020",
 		title: "社团成立",
 		desc: "全栈信息技术社正式成立，开启技术探索之旅",
 	},
@@ -646,7 +646,7 @@ button.bg-gradient-to-r:hover {
 
 /* 添加背景渐变过渡效果 */
 .fixed.inset-0 {
-	transition: background-image 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+	transition: background-image 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 确保内容区域有适当的背景透明度 */
@@ -685,13 +685,13 @@ button.bg-gradient-to-r:hover {
 
 /* 优化背景渐变过渡 */
 .fixed {
-	transition: opacity 0.8s ease;
+	transition: opacity 1s ease;
 }
 
 /* Banner背景渐变效果 */
 .bg-gradient-to-b {
 	background-size: 100% 100%;
-	transition: background-image 0.8s ease;
+	transition: background-image 1s ease;
 }
 
 /* 导航栏模糊效果 */
@@ -707,6 +707,6 @@ nav {
 
 /* 深色模式过渡 */
 :root {
-	transition: background-color 0.8s ease;
+	transition: background-color 1s ease;
 }
 </style>
