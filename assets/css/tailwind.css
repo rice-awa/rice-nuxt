@@ -1,0 +1,13 @@
+/* assets/css/tailwind.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 添加暗模式过渡效果 */
+:root {
+	transition: background-color 0.3s ease;
+}
+
+.dark {
+	color-scheme: dark;
+}
