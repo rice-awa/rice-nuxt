@@ -6,7 +6,7 @@
 		</div>
 
 		<!-- 内容容器 -->
-		<div class="relative z-10">
+		<div class="relative z-10 min-h-[200vh]">
 			<!-- 导航栏 -->
 			<nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-gray-800/80 dark:border-gray-700">
 				<div class="container mx-auto px-6">
@@ -84,7 +84,7 @@
 						</div>
 					</h2>
 					<p class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto dark:text-gray-200">创新 · 协作 · 未来</p>
-					<button class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg">加入我们</button>
+					<button class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg">了解详情</button>
 				</div>
 			</section>
 
@@ -125,7 +125,7 @@
 						<h2 class="text-4xl font-bold mb-12 text-center text-gray-900 dark:text-gray-300">发展历程</h2>
 						<div class="space-y-8">
 							<div v-for="item in timeline" :key="item.year" class="flex items-center gap-8 group">
-								<div class="text-3xl font-bold text-blue-500 w-24">{{ item.year }}</div>
+								<div class="text-3xl font-bold text-blue-500 w-32 flex-shrink-0">{{ item.year }}</div>
 								<div class="flex-1 p-6 bg-white rounded-xl shadow-lg group-hover:shadow-xl transition-all dark:bg-gray-800">
 									<h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-gray-300">{{ item.title }}</h3>
 									<p class="text-gray-600 dark:text-gray-400">{{ item.desc }}</p>
@@ -140,7 +140,7 @@
 					<div class="container mx-auto px-6">
 						<h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-gray-300">加入全栈信息处理协会</h2>
 						<p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto dark:text-gray-400">加入我们，一起探索技术的无限可能</p>
-						<button class="bg-blue-500 hover:bg-blue-600 text-white px-12 py-4 rounded-full text-lg transition-all transform hover:scale-105 shadow-xl">立即加入</button>
+						<button class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-12 py-4 rounded-full text-lg transition-all transform hover:scale-105 shadow-xl">立即加入</button>
 					</div>
 				</section>
 
@@ -204,6 +204,10 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+// 注册 ScrollTrigger 插件
+gsap.registerPlugin(ScrollTrigger);
 
 const isDarkMode = ref(false);
 // 将 isMobileMenuOpen 移到顶层作用域
@@ -303,8 +307,199 @@ onMounted(() => {
 		}
 	});
 
+	// 为特色部分添加滚动动画
+	const features = document.querySelectorAll("#features .container > div");
+	features.forEach((feature, index) => {
+		gsap.from(feature, {
+			scrollTrigger: {
+				trigger: feature,
+				start: "top bottom-=100",
+				end: "top center",
+				toggleActions: "play none none none",
+				once: true,
+			},
+			opacity: 0,
+			y: 50,
+			rotation: 15,
+			scale: 0.8,
+			duration: 0.8,
+			delay: index * 0.2,
+			ease: "back.out(1.7)",
+		});
+	});
+
+	// 为活动部分添加滚动动画
+	const activities = document.querySelectorAll("#activities .grid > div");
+	activities.forEach((activity, index) => {
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: activity,
+				start: "top bottom-=100",
+				end: "top center",
+				toggleActions: "play none none none",
+				once: true,
+			},
+		});
+
+		tl.from(activity, {
+			opacity: 0,
+			y: 100,
+			duration: 0.6,
+			delay: index * 0.2,
+			ease: "power2.out",
+		})
+			.from(
+				activity.querySelector("img"),
+				{
+					scale: 1.5,
+					duration: 1.2,
+					ease: "power2.out",
+				},
+				"-=0.4"
+			)
+			.from(
+				activity.querySelector("h3"),
+				{
+					opacity: 0,
+					x: -30,
+					duration: 0.5,
+				},
+				"-=0.8"
+			)
+			.from(
+				activity.querySelector("p"),
+				{
+					opacity: 0,
+					x: -20,
+					duration: 0.5,
+				},
+				"-=0.3"
+			);
+	});
+
+	// 修改时间线部分的动画配置
+	const timelineItems = document.querySelectorAll("#timeline .space-y-8 > div");
+	timelineItems.forEach((item, index) => {
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: item,
+				start: "top bottom-=100", // 当元素顶部到达视窗底部往上100px时
+				end: "bottom top", // 当元素底部到达视窗顶部时
+				toggleActions: "play none none none",
+				once: true,
+				markers: false, // 调试用，可以看到触发位置
+			},
+		});
+
+		tl.fromTo(
+			item.querySelector(".text-3xl"),
+			{
+				opacity: 0,
+				x: -50,
+			},
+			{
+				opacity: 1,
+				x: 0,
+				duration: 0.6,
+				ease: "power2.out",
+			}
+		).fromTo(
+			item.querySelector(".flex-1"),
+			{
+				opacity: 0,
+				x: 50,
+			},
+			{
+				opacity: 1,
+				x: 0,
+				duration: 0.6,
+				ease: "power2.out",
+			},
+			"-=0.4"
+		);
+	});
+
+	// 修改加入我们部分的动画配置
+	const joinSection = document.querySelector("#join");
+	const joinTl = gsap.timeline({
+		scrollTrigger: {
+			trigger: joinSection,
+			start: "top bottom", // 修改触发位置
+			end: "bottom top",
+			toggleActions: "play none none none",
+			once: true,
+		},
+	});
+
+	joinTl
+		.fromTo(
+			joinSection.querySelector("h2"),
+			{
+				opacity: 0,
+				y: 50,
+			},
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.8,
+				ease: "power2.out",
+			}
+		)
+		.fromTo(
+			joinSection.querySelector("p"),
+			{
+				opacity: 0,
+				y: 30,
+			},
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+			},
+			"-=0.4"
+		)
+		.fromTo(
+			joinSection.querySelector("button"),
+			{
+				opacity: 0,
+				scale: 0.5,
+			},
+			{
+				opacity: 1,
+				scale: 1,
+				duration: 0.8,
+				ease: "back.out(1.7)",
+			},
+			"-=0.2"
+		);
+
+	// 初始化元素状态
+	const initializeElements = () => {
+		// 设置时间线元素的初始状态
+		timelineItems.forEach((item) => {
+			gsap.set(item.querySelector(".text-3xl"), { opacity: 0, x: -50 });
+			gsap.set(item.querySelector(".flex-1"), { opacity: 0, x: 50 });
+		});
+
+		// 设置加入我们部分的初始状态
+		if (joinSection) {
+			gsap.set(joinSection.querySelector("h2"), { opacity: 0, y: 50 });
+			gsap.set(joinSection.querySelector("p"), { opacity: 0, y: 30 });
+			gsap.set(joinSection.querySelector("button"), { opacity: 0, scale: 0.5 });
+		}
+	};
+
+	// 页面加载时初始化元素状态
+	initializeElements();
+
+	// 在页面刷新时重新初始化
+	window.addEventListener("beforeunload", initializeElements);
+
 	// 清理函数
-	return () => ctx.revert();
+	return () => {
+		window.removeEventListener("beforeunload", initializeElements);
+		ctx.revert();
+	};
 });
 
 // 更新主题
@@ -387,7 +582,7 @@ const timeline = [
 		desc: "成功举办校园首届黑客马拉松大赛",
 	},
 	{
-		year: "2020",
+		year: "2021.10",
 		title: "社团成立",
 		desc: "全栈信息技术社正式成立，开启技术探索之旅",
 	},
@@ -465,6 +660,23 @@ p {
 button {
 	font-weight: 500;
 	letter-spacing: 0.025em;
+}
+
+.scroll-trigger-item {
+	visibility: hidden; /* 初始隐藏所有动画元素 */
+}
+
+.scroll-trigger-item.is-visible {
+	visibility: visible;
+}
+
+/* 确保页面有足够的滚动空间 */
+#timeline,
+#join {
+	min-height: 50vh; /* 确保每个部分都有足够的高度 */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 /* 响应式调整 */
@@ -708,5 +920,88 @@ nav {
 /* 深色模式过渡 */
 :root {
 	transition: background-color 1s ease;
+}
+
+/* 添加一些过渡效果的辅助类 */
+.gsap-reveal {
+	visibility: hidden;
+}
+
+/* 优化滚动性能 */
+.smooth-scroll {
+	will-change: transform;
+}
+
+/* 确保动画元素有正确的变换原点 */
+#features .container > div,
+#activities .grid > div,
+#timeline .space-y-8 > div {
+	transform-origin: center center;
+}
+
+/* 优化时间线样式 */
+#timeline .space-y-8 > div {
+	opacity: 1;
+	transform: none;
+}
+
+/* 优化性能相关的样式 */
+.will-change-transform {
+	will-change: transform;
+}
+
+.will-change-opacity {
+	will-change: opacity;
+}
+
+/* 只在动画过程中应用 will-change */
+.animating {
+	will-change: transform, opacity;
+}
+
+/* 确保年份显示正确 */
+#timeline .text-3xl {
+	white-space: nowrap;
+	text-align: right;
+	padding-right: 1rem;
+}
+
+/* 优化加入我们部分的按钮样式 */
+#join button {
+	position: relative;
+	overflow: hidden;
+}
+
+#join button::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+	transition: left 0.5s;
+}
+
+#join button:hover::before {
+	left: 100%;
+}
+
+/* 在 style 标签中添加 */
+.scroll-trigger-item {
+	visibility: hidden; /* 初始隐藏所有动画元素 */
+}
+
+.scroll-trigger-item.is-visible {
+	visibility: visible;
+}
+
+/* 确保页面有足够的滚动空间 */
+#timeline,
+#join {
+	min-height: 50vh; /* 确保每个部分都有足够的高度 */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 </style>
