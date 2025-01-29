@@ -1,5 +1,5 @@
 <template>
-	<div class="min-h-screen">
+	<div class="min-h-screen overflow-x-hidden">
 		<!-- Banner背景 -->
 		<div class="fixed top-0 left-0 right-0 h-screen pointer-events-none">
 			<div class="h-full bg-gradient-to-b from-white via-[#5382DB]/40 to-[#5382DB]/30 dark:from-gray-900 dark:via-[#5382DB]/30 dark:to-transparent"></div>
@@ -12,8 +12,9 @@
 				<div class="container mx-auto px-6">
 					<div class="flex justify-between items-center h-16">
 						<!-- Logo -->
-						<div class="flex items-center">
-							<h1 class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">全栈<span class="font-extrabold">FULLSTACK</span></h1>
+						<div class="flex items-center space-x-2">
+							<img src="/img/logo.webp" alt="社徽" class="w-8 h-8 md:w-10 md:h-10 object-contain" />
+							<h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">全栈<span class="font-extrabold">FULLSTACK</span></h1>
 						</div>
 
 						<!-- 导航链接 -->
@@ -684,6 +685,8 @@ button {
 	.container {
 		padding-left: 1rem;
 		padding-right: 1rem;
+		max-width: 100%;
+		overflow-x: hidden;
 	}
 
 	h1 {
@@ -1003,5 +1006,19 @@ nav {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
+/* 添加以下样式来防止水平溢出 */
+html,
+body {
+	overflow-x: hidden;
+	width: 100%;
+	position: relative;
+}
+
+/* 确保动画不会导致水平溢出 */
+.gsap-reveal,
+.scroll-trigger-item {
+	overflow-x: hidden;
 }
 </style>
