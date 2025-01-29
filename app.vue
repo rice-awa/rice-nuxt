@@ -84,25 +84,13 @@
 							<span v-for="(char, index) in titleLines.line2" :key="`line2-${index}`" class="line2-char inline-block bg-clip-text text-transparent bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 dark:from-blue-400 dark:via-blue-300 dark:to-purple-400">{{ char }}</span>
 						</div>
 					</h2>
-					<p class="text-xl text-gray-700 mb-8 max-w-2xl mx-auto dark:text-gray-200">创新 · 协作 · 未来</p>
+					<p class="intro-text text-xl text-gray-700 mb-8 max-w-3xl mx-auto dark:text-gray-200 leading-relaxed" ref="introText">创新 · 协作 · 未来</p>
 					<button class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg">了解详情</button>
 				</div>
 			</section>
 
 			<!-- 其他内容区域 - 使用白色背景 -->
 			<div class="relative bg-white dark:bg-gray-900">
-				<section id="features" class="py-20">
-					<div class="container mx-auto px-6 grid md:grid-cols-4 gap-8">
-						<div v-for="(feature, index) in features" :key="index" class="p-8 bg-white rounded-xl hover:shadow-xl transition-all border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
-							<div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-								<Icon :name="feature.icon" class="w-8 h-8 text-blue-500" />
-							</div>
-							<h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-300">{{ feature.title }}</h3>
-							<p class="text-gray-600 dark:text-gray-400">{{ feature.desc }}</p>
-						</div>
-					</div>
-				</section>
-
 				<!-- 近期活动 -->
 				<section id="activities" class="py-20 bg-gray-50 dark:bg-gray-900">
 					<div class="container mx-auto px-6">
@@ -136,11 +124,67 @@
 					</div>
 				</section>
 
+				<section id="features" class="py-20">
+					<div class="container mx-auto px-6">
+						<h2 class="text-4xl font-bold mb-16 text-center text-gray-900 dark:text-gray-300" ref="departmentTitle">下设部门</h2>
+						<div class="grid md:grid-cols-3 gap-12">
+							<!-- 编程部 -->
+							<div class="department-card" ref="deptCard1">
+								<div class="p-8 bg-white rounded-xl hover:shadow-xl transition-all border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+									<h3 class="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">编程部</h3>
+									<div class="space-y-4">
+										<p class="text-gray-600 dark:text-gray-400">其中包括：</p>
+										<ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
+											<li>py支部（python）</li>
+											<li>CJ支部（C++、Java）</li>
+											<li>程序设计</li>
+											<li>自动化</li>
+											<li>网页编写</li>
+											<li>网络安全</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- 媒体部 -->
+							<div class="department-card" ref="deptCard2">
+								<div class="p-8 bg-white rounded-xl hover:shadow-xl transition-all border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+									<h3 class="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">媒体部</h3>
+									<div class="space-y-4">
+										<p class="text-gray-600 dark:text-gray-400">其中包括：</p>
+										<ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
+											<li>剪辑（视频剪辑、动画）</li>
+											<li>平面设计（logo、海报、周边、绘画）</li>
+											<li>3维设计（3D建模、3D打印、动画CG）</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- 硬件部 -->
+							<div class="department-card" ref="deptCard3">
+								<div class="p-8 bg-white rounded-xl hover:shadow-xl transition-all border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+									<h3 class="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">硬件部</h3>
+									<div class="space-y-4">
+										<p class="text-gray-600 dark:text-gray-400">其中包括：</p>
+										<ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
+											<li>电脑硬件（装机）</li>
+											<li>机器人编程</li>
+											<li>电路设计</li>
+											<li>DIY</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
 				<!-- 加入我们 -->
 				<section id="join" class="py-32 text-center bg-gray-50 dark:bg-gray-900">
 					<div class="container mx-auto px-6">
-						<h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-gray-300">加入全栈信息处理协会</h2>
-						<p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto dark:text-gray-400">加入我们，一起探索技术的无限可能</p>
+						<h2 class="text-4xl font-bold mb-8 text-gray-900 dark:text-gray-300">全栈信息处理协会</h2>
+						<p class="text-xl text-gray-600 mb-12 max-w-2xl mx-auto dark:text-gray-400">“栈"在信息技术中是一种特殊的数据结构，“全栈"体现了我们包容的理念。在这里，我们欢迎每一位想从0到1，从1到100的同学共同进步！</p>
 						<button class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-12 py-4 rounded-full text-lg transition-all transform hover:scale-105 shadow-xl">立即加入</button>
 					</div>
 				</section>
@@ -206,6 +250,12 @@
 import { ref, watch, onMounted } from "vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const introText = ref(null);
+const departmentTitle = ref(null);
+const deptCard1 = ref(null);
+const deptCard2 = ref(null);
+const deptCard3 = ref(null);
 
 // 注册 ScrollTrigger 插件
 gsap.registerPlugin(ScrollTrigger);
@@ -328,10 +378,95 @@ onMounted(() => {
 			ease: "back.out(1.7)",
 		});
 	});
+	// 创建介绍文字的动画
+	gsap.fromTo(
+		introText.value,
+		{
+			opacity: 0,
+			y: 40,
+		},
+		{
+			opacity: 1,
+			y: 0,
+			duration: 0.8,
+			delay: 1.2,
+			ease: "power2.out",
+		}
+	);
+
+	// 部门标题动画
+	gsap.from(departmentTitle.value, {
+		scrollTrigger: {
+			trigger: departmentTitle.value,
+			start: "top bottom-=100",
+			toggleActions: "play none none reverse",
+			once: true,
+		},
+		opacity: 0,
+		y: 50,
+		duration: 0.8,
+	});
+
+	// 部门卡片动画
+	const cards = [deptCard1.value, deptCard2.value, deptCard3.value];
+	cards.forEach((card, index) => {
+		gsap.from(card, {
+			scrollTrigger: {
+				trigger: card,
+				start: "top bottom-=50",
+				toggleActions: "play none none reverse",
+				once: true,
+			},
+			opacity: 0,
+			y: 100,
+			duration: 0.8,
+			delay: index * 0.2,
+			ease: "power2.out",
+		});
+
+		// 添加hover效果
+		card.addEventListener("mouseenter", () => {
+			gsap.to(card, {
+				scale: 1.02,
+				duration: 0.3,
+				ease: "power2.out",
+			});
+		});
+
+		card.addEventListener("mouseleave", () => {
+			gsap.to(card, {
+				scale: 1,
+				duration: 0.3,
+				ease: "power2.out",
+			});
+		});
+	});
+
+	// 为列表项添加渐入动画
+	const listItems = document.querySelectorAll(".department-card li");
+	listItems.forEach((item, index) => {
+		gsap.from(item, {
+			scrollTrigger: {
+				trigger: item,
+				start: "top bottom-=20",
+				toggleActions: "play none none reverse",
+			},
+			opacity: 0,
+			x: -20,
+			duration: 0.5,
+			delay: index * 0.1,
+		});
+	});
 
 	// 为活动部分添加滚动动画
 	const activities = document.querySelectorAll("#activities .grid > div");
 	activities.forEach((activity, index) => {
+		// 设置初始状态
+		gsap.set(activity, { opacity: 0, y: 100 });
+		gsap.set(activity.querySelector("img"), { scale: 1.5 });
+		gsap.set(activity.querySelector("h3"), { opacity: 0, x: -30 });
+		gsap.set(activity.querySelector("p"), { opacity: 0, x: -20 });
+
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: activity,
@@ -342,39 +477,39 @@ onMounted(() => {
 			},
 		});
 
-		tl.from(activity, {
-			opacity: 0,
-			y: 100,
+		tl.to(activity, {
+			opacity: 1,
+			y: 0,
 			duration: 0.6,
 			delay: index * 0.2,
 			ease: "power2.out",
 		})
-			.from(
+			.to(
 				activity.querySelector("img"),
 				{
-					scale: 1.5,
+					scale: 1,
 					duration: 1.2,
 					ease: "power2.out",
 				},
-				"-=0.4"
+				"-=0.6" // 修改重叠时间
 			)
-			.from(
+			.to(
 				activity.querySelector("h3"),
 				{
-					opacity: 0,
-					x: -30,
+					opacity: 1,
+					x: 0,
 					duration: 0.5,
 				},
-				"-=0.8"
+				"-=0.5" // 修改重叠时间
 			)
-			.from(
+			.to(
 				activity.querySelector("p"),
 				{
-					opacity: 0,
-					x: -20,
+					opacity: 1,
+					x: 0,
 					duration: 0.5,
 				},
-				"-=0.3"
+				"-=0.4" // 修改重叠时间
 			);
 	});
 
@@ -573,19 +708,34 @@ const activities = [
 
 const timeline = [
 	{
-		year: "2023",
-		title: "全国科技创新大赛金奖",
-		desc: "团队开发的智能校园项目获得全国大赛金奖",
+		year: "2021.10",
+		title: "社团成立",
+		desc: "全栈信息技术社正式成立，确定部门，开启技术探索之旅",
 	},
 	{
 		year: "2022",
-		title: "首届黑客马拉松",
-		desc: "成功举办校园首届黑客马拉松大赛",
+		title: "开展编程教学及讲座",
+		desc: "举办信息技术讲座，C++编程教学",
 	},
 	{
-		year: "2021.10",
-		title: "社团成立",
-		desc: "全栈信息技术社正式成立，开启技术探索之旅",
+		year: "2022",
+		title: "开创社团交流本",
+		desc: "社团交流本以及社团明信片选定",
+	},
+	{
+		year: "2023",
+		title: "部门更新",
+		desc: "新增硬件，数字媒体技术相关部门，新增部长，联络员",
+	},
+	{
+		year: "2024",
+		title: "社服与交流本",
+		desc: "首套社服选定，交流本内容优化",
+	},
+	{
+		year: "2024",
+		title: "科技文化艺术节",
+		desc: "首次与科技社合作开展科技游园活动",
 	},
 ];
 
@@ -603,6 +753,11 @@ const titleLines = {
 	line1: "探索数字宇宙".split(""),
 	line2: "FULLSTACK".split(""),
 };
+
+// 添加新的动画逻辑
+onMounted(() => {
+	// ... 之前的动画代码保持不变 ...
+});
 </script>
 
 <style>
@@ -1020,5 +1175,28 @@ body {
 .gsap-reveal,
 .scroll-trigger-item {
 	overflow-x: hidden;
+}
+
+/* 添加新的样式 */
+.department-card {
+	transition: transform 0.3s ease;
+}
+
+.department-card:hover {
+	transform: translateY(-5px);
+}
+
+.department-card li {
+	transition: color 0.3s ease;
+}
+
+.department-card:hover li {
+	color: currentColor;
+}
+
+/* 确保列表样式正确显示 */
+.list-disc {
+	list-style-type: disc;
+	margin-left: 1.5rem;
 }
 </style>
