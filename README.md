@@ -85,6 +85,6 @@ git push origin feature/新功能描述
 如果你有任何问题或建议，请随时通过以下方式联系我们：
 
 - 邮箱: [issues@rice-awa.top](mailto:rice-awa@rice-awa.top)
-- GitHub Issues: [提交问题](https://github.com/rice-awa/rice-nuxt)/issues)
+- GitHub Issues: [提交问题](https://github.com/rice-awa/rice-nuxt/issues)
 
 感谢你的贡献！
