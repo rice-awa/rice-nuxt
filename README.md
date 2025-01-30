@@ -1,75 +1,90 @@
-# Nuxt Minimal Starter
+# 全栈信息处理协会官网
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+网址：[demo.rice-awa.top](https://demo.rice-awa.top/)
 
-## Setup
+## 使用技术栈
 
-Make sure to install dependencies:
+- Nuxt.js
+- Vue.js
+- Tailwind CSS
+
+## 许可证
+
+[MIT](./LICENSE)
+
+## 网页设计
+
+[rice_awa](https://rice-awa.top/)
+
+## 如何贡献代码
+
+我们欢迎任何形式的贡献！以下是一些简单的步骤来帮助你开始：
+
+### 1. Fork 仓库
+
+点击右上角的 "Fork" 按钮，将此仓库的副本复制到你的 GitHub 账户中。
+
+### 2. 克隆仓库
+
+在你的本地机器上克隆你 Fork 的仓库：
 
 ```bash
-# npm
+git clone https://github.com/rice-awa/rice-nuxt.git
+cd 仓库名
+```
+
+### 3. 创建新分支
+
+为你的贡献创建一个新的分支：
+
+```bash
+git checkout -b feature/新功能描述
+```
+
+### 4. 安装依赖
+
+确保你已经安装了 Node.js 和 npm。然后在项目目录中运行以下命令来安装依赖：
+
+```bash
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+### 5. 进行修改
 
-Start the development server on `http://localhost:3000`:
+在你的本地仓库中进行你想要的更改。
+
+使用以下命令开始调试
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+### 6. 提交更改
 
-Build the application for production:
+将你的更改添加到暂存区并提交：
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+git add .
+git commit -m "描述你的更改"
 ```
 
-Locally preview production build:
+### 7. 推送更改
+
+将你的更改推送到你 Fork 的仓库：
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+git push origin feature/新功能描述
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### 8. 创建 Pull Request
+
+在 GitHub 上导航到你 Fork 的仓库，点击 "New Pull Request" 按钮，填写必要的信息并提交。
+
+## 联系我们
+
+如果你有任何问题或建议，请随时通过以下方式联系我们：
+
+- 邮箱: [issues@rice-awa.top](mailto:rice-awa@rice-awa.top)
+- GitHub Issues: [提交问题](https://github.com/rice-awa/rice-nuxt)/issues)
+
+感谢你的贡献！
