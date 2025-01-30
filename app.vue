@@ -383,14 +383,14 @@ onMounted(() => {
 		introText.value,
 		{
 			opacity: 0,
-			y: 40,
+			y: 30,
 		},
 		{
 			opacity: 1,
 			y: 0,
-			duration: 0.8,
-			delay: 1.2,
-			ease: "power2.out",
+			duration: 1,
+			delay: 2.5,
+			ease: "power4.out",
 		}
 	);
 
