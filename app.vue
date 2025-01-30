@@ -13,7 +13,7 @@
 					<div class="flex justify-between items-center h-16">
 						<!-- Logo -->
 						<div class="flex items-center space-x-2">
-							<img src="/img/logo.webp" alt="社徽" class="w-8 h-8 md:w-10 md:h-10 object-contain" />
+							<img src="/images/logo.webp" alt="社徽" class="w-8 h-8 md:w-10 md:h-10 object-contain" />
 							<h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">全栈<span class="font-extrabold">FULLSTACK</span></h1>
 						</div>
 
@@ -687,34 +687,34 @@ const features = [
 
 const activities = [
 	{
-		title: "黑客马拉松",
-		desc: "48小时极限编程挑战，展现创意与技术的完美融合",
-		date: "2024年3月15日",
-		image: "/images/hackathon.jpg",
+		title: "学习开发知识",
+		desc: "学习有关编程知识，提升自身开发能力",
+		date: "2024年6月10日",
+		image: "/images/社员们正在学习编程知识.webp",
 	},
 	{
-		title: "技术讲座",
-		desc: "业界大牛分享前沿技术与发展趋势",
-		date: "2024年3月20日",
-		image: "/images/tech-talk.jpg",
+		title: "3D建模技术讲座",
+		desc: "社团合作开展3D建模科普",
+		date: "2024年6月7日",
+		image: "/images/大社开展3D建模科普.webp",
 	},
 	{
-		title: "项目实战",
-		desc: "真实项目开发体验，提升实战能力",
-		date: "2024年4月1日",
-		image: "/images/project.jpg",
+		title: "社团文化艺术节",
+		desc: "社团文化艺术节，举行有趣的社文小游戏",
+		date: "2024年6月6日",
+		image: "/images/开展社团文化艺术节小游戏.webp",
 	},
 ];
 
 const timeline = [
 	{
-		year: "2021.10",
+		year: "2021.11",
 		title: "社团成立",
 		desc: "全栈信息技术社正式成立，确定部门，开启技术探索之旅",
 	},
 	{
-		year: "2022",
-		title: "开展编程教学及讲座",
+		year: "2021.12",
+		title: "开展迎新讲座--星辰大海",
 		desc: "举办信息技术讲座，C++编程教学",
 	},
 	{
@@ -753,11 +753,6 @@ const titleLines = {
 	line1: "探索数字宇宙".split(""),
 	line2: "FULLSTACK".split(""),
 };
-
-// 添加新的动画逻辑
-onMounted(() => {
-	// ... 之前的动画代码保持不变 ...
-});
 </script>
 
 <style>
