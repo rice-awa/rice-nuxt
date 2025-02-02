@@ -85,7 +85,7 @@
 						</div>
 					</h2>
 					<p class="intro-text text-xl text-gray-700 mb-8 max-w-3xl mx-auto dark:text-gray-200 leading-relaxed" ref="introText">创新 · 协作 · 未来</p>
-					<button class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg">了解详情</button>
+					<button @click="scrollToSection('#activities')" class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg">了解详情</button>
 				</div>
 			</section>
 
@@ -207,7 +207,7 @@
 							<div>
 								<h3 class="text-white text-lg font-semibold mb-4">开发人员</h3>
 								<ul class="space-y-2">
-									<li><NuxtLink to="/api" class="hover:text-white">API 文档</NuxtLink></li>
+									<li><a href="https://github.com/rice-awa/rice-nuxt" class="hover:text-white" target="_blank">Github</a></li>
 									<li><NuxtLink to="/teams-api" class="hover:text-white">Teams API</NuxtLink></li>
 									<li><NuxtLink to="/docs" class="hover:text-white">开发指南</NuxtLink></li>
 								</ul>
@@ -223,21 +223,7 @@
 						</div>
 
 						<div class="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-							<div class="text-sm">© 2024 全栈信息处理协会. 保留所有权利.</div>
-							<div class="flex space-x-6 mt-4 md:mt-0">
-								<a href="#" class="text-gray-400 hover:text-white">
-									<span class="sr-only">Facebook</span>
-									<i class="fab fa-facebook"></i>
-								</a>
-								<a href="#" class="text-gray-400 hover:text-white">
-									<span class="sr-only">Twitter</span>
-									<i class="fab fa-twitter"></i>
-								</a>
-								<a href="#" class="text-gray-400 hover:text-white">
-									<span class="sr-only">GitHub</span>
-									<i class="fab fa-github"></i>
-								</a>
-							</div>
+							<div class="text-sm">© 2025 全栈信息处理协会 保留所有权利</div>
 						</div>
 					</div>
 				</footer>
