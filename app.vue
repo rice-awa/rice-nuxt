@@ -308,6 +308,7 @@
 import { ref, watch, onMounted } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { nextTick } from 'vue';
 
 const introText = ref(null);
 const departmentTitle = ref(null);
@@ -475,317 +476,116 @@ const setItemRef = (el, index) => {
 
 // 在组件挂载时初始化主题
 onMounted(() => {
-	// 检查本地存储的主题设置
-	const savedTheme = localStorage.getItem('theme');
-	if (savedTheme) {
-		isDarkMode.value = savedTheme === 'dark';
-		// 立即应用保存的主题
-		updateTheme();
-	} else {
-		// 检查系统主题偏好
-		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		isDarkMode.value = prefersDark;
-		updateTheme();
-	}
-
-	// 监听系统主题变化
-	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-		isDarkMode.value = e.matches;
-		updateTheme();
-	});
-
-	// 创建GSAP上下文
-	const ctx = gsap.context(() => {
-		// 获取所有标题字符
-		const chars = titleRef.value.querySelectorAll('span');
-
-		// 设置初始状态
-		gsap.set(chars, {
-			opacity: 0,
-			y: 40, // 初始位置略微向下，增加幅度
-		});
-
-		// 创建时间轴
-		const tl = gsap.timeline();
-
-		// 第一行文字动画
-		const line1Chars = titleRef.value.querySelectorAll('.line1-char');
-		tl.to(line1Chars, {
-			duration: 0.6, // 动画持续时间
-			opacity: 1, // 目标透明度
-			y: 0, // 目标位置
-			stagger: 0.1, // 字符之间的延迟
-			ease: 'power2.out', // 动画缓动效果
-		})
-			// 第二行文字动画
-			.to(
-				titleRef.value.querySelectorAll('.line2-char'),
-				{
-					duration: 0.6, // 动画持续时间
-					opacity: 1, // 目标透明度
-					y: 0, // 目标位置
-					stagger: 0.05, // 字符之间的延迟
-					ease: 'power2.out', // 动画缓动效果
-				},
-				'-=0.3' // 与前一个动画重叠的时间
-			)
-			// 所有字符的下落动画
-			.to(
-				chars,
-				{
-					duration: 0.8, // 动画持续时间
-					y: '+=20', // 向下移动的距离
-					ease: 'elastic.out(1, 0.4)', // 动画缓动效果
-					stagger: {
-						amount: 0.5, // 随机下落的时间
-						from: 'random', // 从随机字符开始
-					},
-				},
-				'+=0.4' // 等待时间后开始下落动画
-			);
-	}, titleRef);
-
-	// 监听滚动以关闭菜单
-	window.addEventListener('scroll', () => {
-		if (isMobileMenuOpen.value) {
-			isMobileMenuOpen.value = false;
-		}
-	});
-
-	// 监听菜单状态变化
-	watch(isMobileMenuOpen, (isOpen) => {
-		if (isOpen) {
-			document.body.classList.add('overflow-hidden');
+	nextTick(() => {
+		// 检查本地存储的主题设置
+		const savedTheme = localStorage.getItem('theme');
+		if (savedTheme) {
+			isDarkMode.value = savedTheme === 'dark';
+			// 立即应用保存的主题
+			updateTheme();
 		} else {
-			document.body.classList.remove('overflow-hidden');
+			// 检查系统主题偏好
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			isDarkMode.value = prefersDark;
+			updateTheme();
 		}
-	});
 
-	// 为特色部分添加滚动动画
-	const features = document.querySelectorAll('#features .container > div');
-	features.forEach((feature, index) => {
-		gsap.from(feature, {
-			scrollTrigger: {
-				trigger: feature,
-				start: 'top bottom-=100',
-				end: 'top center',
-				toggleActions: 'play none none none',
-				once: true,
-			},
-			opacity: 0,
-			y: 50,
-			rotation: 15,
-			scale: 0.8,
-			duration: 0.8,
-			delay: index * 0.2,
-			ease: 'back.out(1.7)',
-		});
-	});
-	// 创建介绍文字的动画
-	gsap.fromTo(
-		introText.value,
-		{
-			opacity: 0,
-			y: 30,
-		},
-		{
-			opacity: 1,
-			y: 0,
-			duration: 1,
-			delay: 2.5,
-			ease: 'power4.out',
-		}
-	);
-
-	// 部门标题动画
-	gsap.from(departmentTitle.value, {
-		scrollTrigger: {
-			trigger: departmentTitle.value,
-			start: 'top bottom-=100',
-			toggleActions: 'play none none reverse',
-			once: true,
-		},
-		opacity: 0,
-		y: 50,
-		duration: 0.8,
-	});
-
-	// 部门卡片动画
-	const cards = [deptCard1.value, deptCard2.value, deptCard3.value];
-	cards.forEach((card, index) => {
-		gsap.from(card, {
-			scrollTrigger: {
-				trigger: card,
-				start: 'top bottom-=50',
-				toggleActions: 'play none none reverse',
-				once: true,
-			},
-			opacity: 0,
-			y: 100,
-			duration: 0.8,
-			delay: index * 0.2,
-			ease: 'power2.out',
+		// 监听系统主题变化
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+			isDarkMode.value = e.matches;
+			updateTheme();
 		});
 
-		// 添加hover效果
-		card.addEventListener('mouseenter', () => {
-			gsap.to(card, {
-				scale: 1.02,
-				duration: 0.3,
-				ease: 'power2.out',
-			});
-		});
+		// 创建GSAP上下文
+		const ctx = gsap.context(() => {
+			// 获取所有标题字符
+			const chars = titleRef.value.querySelectorAll('span');
 
-		card.addEventListener('mouseleave', () => {
-			gsap.to(card, {
-				scale: 1,
-				duration: 0.3,
-				ease: 'power2.out',
-			});
-		});
-	});
-
-	// 为列表项添加渐入动画
-	const listItems = document.querySelectorAll('.department-card li');
-	listItems.forEach((item, index) => {
-		gsap.from(item, {
-			scrollTrigger: {
-				trigger: item,
-				start: 'top bottom-=20',
-				toggleActions: 'play none none reverse',
-			},
-			opacity: 0,
-			x: -20,
-			duration: 0.5,
-			delay: index * 0.1,
-		});
-	});
-
-	// 为活动部分添加滚动动画
-	const activities = document.querySelectorAll('#activities .grid > div');
-	activities.forEach((activity, index) => {
-		// 设置初始状态
-		gsap.set(activity, { opacity: 0, y: 100 });
-		gsap.set(activity.querySelector('img'), { scale: 1.5 });
-		gsap.set(activity.querySelector('h3'), { opacity: 0, x: -30 });
-		gsap.set(activity.querySelector('p'), { opacity: 0, x: -20 });
-
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: activity,
-				start: 'top bottom-=100',
-				end: 'top center',
-				toggleActions: 'play none none none',
-				once: true,
-			},
-		});
-
-		tl.to(activity, {
-			opacity: 1,
-			y: 0,
-			duration: 0.6,
-			delay: index * 0.4,
-			ease: 'power2.out',
-		})
-			.to(
-				activity.querySelector('img'),
-				{
-					scale: 1,
-					duration: 1.2,
-					ease: 'power2.out',
-				},
-				'-=0.6' // 修改重叠时间
-			)
-			.to(
-				activity.querySelector('h3'),
-				{
-					opacity: 1,
-					x: 0,
-					duration: 0.5,
-				},
-				'-=0.5' // 修改重叠时间
-			)
-			.to(
-				activity.querySelector('p'),
-				{
-					opacity: 1,
-					x: 0,
-					duration: 0.5,
-				},
-				'-=0.4' // 修改重叠时间
-			);
-	});
-
-	// 修改时间线部分的动画配置
-	const timelineItems = document.querySelectorAll('#timeline .space-y-8 > div');
-	timelineItems.forEach((item, index) => {
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: item,
-				start: 'top bottom-=100', // 当元素顶部到达视窗底部往上100px时
-				end: 'bottom top', // 当元素底部到达视窗顶部时
-				toggleActions: 'play none none none',
-				once: true,
-				markers: false, // 调试用，可以看到触发位置
-			},
-		});
-
-		tl.fromTo(
-			item.querySelector('.text-3xl'),
-			{
+			// 设置初始状态
+			gsap.set(chars, {
 				opacity: 0,
-				x: -50,
-			},
-			{
-				opacity: 1,
-				x: 0,
-				duration: 0.6,
-				ease: 'power2.out',
+				y: 40, // 初始位置略微向下，增加幅度
+			});
+
+			// 创建时间轴
+			const tl = gsap.timeline();
+
+			// 第一行文字动画
+			const line1Chars = titleRef.value.querySelectorAll('.line1-char');
+			tl.to(line1Chars, {
+				duration: 0.6, // 动画持续时间
+				opacity: 1, // 目标透明度
+				y: 0, // 目标位置
+				stagger: 0.1, // 字符之间的延迟
+				ease: 'power2.out', // 动画缓动效果
+			})
+				// 第二行文字动画
+				.to(
+					titleRef.value.querySelectorAll('.line2-char'),
+					{
+						duration: 0.6, // 动画持续时间
+						opacity: 1, // 目标透明度
+						y: 0, // 目标位置
+						stagger: 0.05, // 字符之间的延迟
+						ease: 'power2.out', // 动画缓动效果
+					},
+					'-=0.3' // 与前一个动画重叠的时间
+				)
+				// 所有字符的下落动画
+				.to(
+					chars,
+					{
+						duration: 0.8, // 动画持续时间
+						y: '+=20', // 向下移动的距离
+						ease: 'elastic.out(1, 0.4)', // 动画缓动效果
+						stagger: {
+							amount: 0.5, // 随机下落的时间
+							from: 'random', // 从随机字符开始
+						},
+					},
+					'+=0.4' // 等待时间后开始下落动画
+				);
+		}, titleRef);
+
+		// 监听滚动以关闭菜单
+		window.addEventListener('scroll', () => {
+			if (isMobileMenuOpen.value) {
+				isMobileMenuOpen.value = false;
 			}
-		).fromTo(
-			item.querySelector('.flex-1'),
-			{
-				opacity: 0,
-				x: 50,
-			},
-			{
-				opacity: 1,
-				x: 0,
-				duration: 0.6,
-				ease: 'power2.out',
-			},
-			'-=0.4'
-		);
-	});
+		});
 
-	// 修改加入我们部分的动画配置
-	const joinSection = document.querySelector('#join');
-	const joinTl = gsap.timeline({
-		scrollTrigger: {
-			trigger: joinSection,
-			start: 'top bottom', // 修改触发位置
-			end: 'bottom top',
-			toggleActions: 'play none none none',
-			once: true,
-		},
-	});
+		// 监听菜单状态变化
+		watch(isMobileMenuOpen, (isOpen) => {
+			if (isOpen) {
+				document.body.classList.add('overflow-hidden');
+			} else {
+				document.body.classList.remove('overflow-hidden');
+			}
+		});
 
-	joinTl
-		.fromTo(
-			joinSection.querySelector('h2'),
-			{
+		// 为特色部分添加滚动动画
+		const features = document.querySelectorAll('#features .container > div');
+		features.forEach((feature, index) => {
+			gsap.from(feature, {
+				scrollTrigger: {
+					trigger: feature,
+					start: 'top bottom-=100',
+					end: 'top center',
+					toggleActions: 'play none none none',
+					once: true,
+				},
 				opacity: 0,
 				y: 50,
-			},
-			{
-				opacity: 1,
-				y: 0,
+				rotation: 15,
+				scale: 0.8,
 				duration: 0.8,
-				ease: 'power2.out',
-			}
-		)
-		.fromTo(
-			joinSection.querySelector('p'),
+				delay: index * 0.2,
+				ease: 'back.out(1.7)',
+			});
+		});
+		// 创建介绍文字的动画
+		gsap.fromTo(
+			introText.value,
 			{
 				opacity: 0,
 				y: 30,
@@ -793,111 +593,366 @@ onMounted(() => {
 			{
 				opacity: 1,
 				y: 0,
-				duration: 0.6,
-			},
-			'-=0.4'
-		)
-		.fromTo(
-			joinSection.querySelector('button'),
-			{
-				opacity: 0,
-				scale: 0.5,
-			},
-			{
-				opacity: 1,
-				scale: 1,
-				duration: 0.8,
-				ease: 'back.out(1.7)',
-			},
-			'-=0.2'
+				duration: 1,
+				delay: 2.5,
+				ease: 'power4.out',
+			}
 		);
 
-	// 初始化元素状态
-	const initializeElements = () => {
-		// 设置时间线元素的初始状态
-		timelineItems.forEach((item) => {
-			gsap.set(item.querySelector('.text-3xl'), { opacity: 0, x: -50 });
-			gsap.set(item.querySelector('.flex-1'), { opacity: 0, x: 50 });
+		// 部门标题动画
+		gsap.from(departmentTitle.value, {
+			scrollTrigger: {
+				trigger: departmentTitle.value,
+				start: 'top bottom-=100',
+				toggleActions: 'play none none reverse',
+				once: true,
+			},
+			opacity: 0,
+			y: 50,
+			duration: 0.8,
 		});
 
-		// 设置加入我们部分的初始状态
-		if (joinSection) {
-			gsap.set(joinSection.querySelector('h2'), { opacity: 0, y: 50 });
-			gsap.set(joinSection.querySelector('p'), { opacity: 0, y: 30 });
-			gsap.set(joinSection.querySelector('button'), { opacity: 0, scale: 0.5 });
-		}
-	};
+		// 部门卡片动画
+		const cards = [deptCard1.value, deptCard2.value, deptCard3.value];
+		cards.forEach((card, index) => {
+			gsap.from(card, {
+				scrollTrigger: {
+					trigger: card,
+					start: 'top bottom-=50',
+					toggleActions: 'play none none reverse',
+					once: true,
+				},
+				opacity: 0,
+				y: 100,
+				duration: 0.8,
+				delay: index * 0.2,
+				ease: 'power2.out',
+			});
 
-	// 页面加载时初始化元素状态
-	initializeElements();
-
-	// 在页面刷新时重新初始化
-	window.addEventListener('beforeunload', initializeElements);
-
-	// 清理函数
-	return () => {
-		window.removeEventListener('beforeunload', initializeElements);
-		ctx.revert();
-	};
-});
-
-onMounted(() => {
-	console.log('Component mounted');
-	console.log('successProjects:', successProjects);
-	console.log('successItems:', successItems.value);
-
-	// 标题动画
-	gsap.from(successTitle.value, {
-		scrollTrigger: {
-			trigger: successTitle.value,
-			start: 'top 80%',
-			toggleActions: 'play none none reverse',
-		},
-		y: 50,
-		opacity: 0,
-		duration: 0.8,
-	});
-
-	// 项目卡片动画
-	requestAnimationFrame(() => {
-		successItems.value.forEach((item, index) => {
-			if (item) {
-				// 设置初始状态
-				gsap.set(item, {
-					opacity: 0,
-					x: index % 2 === 0 ? -50 : 50,
+			// 添加hover效果
+			card.addEventListener('mouseenter', () => {
+				gsap.to(card, {
+					scale: 1.02,
+					duration: 0.3,
+					ease: 'power2.out',
 				});
+			});
 
-				// 执行动画
-				gsap.to(item, {
-					scrollTrigger: {
-						trigger: item,
-						start: 'top 75%',
-						toggleActions: 'play none none reverse',
+			card.addEventListener('mouseleave', () => {
+				gsap.to(card, {
+					scale: 1,
+					duration: 0.3,
+					ease: 'power2.out',
+				});
+			});
+		});
+
+		// 为列表项添加渐入动画
+		const listItems = document.querySelectorAll('.department-card li');
+		listItems.forEach((item, index) => {
+			gsap.from(item, {
+				scrollTrigger: {
+					trigger: item,
+					start: 'top bottom-=20',
+					toggleActions: 'play none none reverse',
+				},
+				opacity: 0,
+				x: -20,
+				duration: 0.5,
+				delay: index * 0.1,
+			});
+		});
+
+		// 为活动部分添加滚动动画
+		const activities = document.querySelectorAll('#activities .grid > div');
+		activities.forEach((activity, index) => {
+			// 设置初始状态
+			gsap.set(activity, { opacity: 0, y: 100 });
+			gsap.set(activity.querySelector('img'), { scale: 1.5 });
+			gsap.set(activity.querySelector('h3'), { opacity: 0, x: -30 });
+			gsap.set(activity.querySelector('p'), { opacity: 0, x: -20 });
+
+			const tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: activity,
+					start: 'top bottom-=100',
+					end: 'top center',
+					toggleActions: 'play none none none',
+					once: true,
+				},
+			});
+
+			tl.to(activity, {
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+				delay: index * 0.4,
+				ease: 'power2.out',
+			})
+				.to(
+					activity.querySelector('img'),
+					{
+						scale: 1,
+						duration: 1.2,
+						ease: 'power2.out',
 					},
+					'-=0.6' // 修改重叠时间
+				)
+				.to(
+					activity.querySelector('h3'),
+					{
+						opacity: 1,
+						x: 0,
+						duration: 0.5,
+					},
+					'-=0.5' // 修改重叠时间
+				)
+				.to(
+					activity.querySelector('p'),
+					{
+						opacity: 1,
+						x: 0,
+						duration: 0.5,
+					},
+					'-=0.4' // 修改重叠时间
+				);
+		});
+
+		// 修改时间线部分的动画配置
+		const timelineItems = document.querySelectorAll('#timeline .space-y-8 > div');
+		timelineItems.forEach((item, index) => {
+			const tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: item,
+					start: 'top bottom-=100', // 当元素顶部到达视窗底部往上100px时
+					end: 'bottom top', // 当元素底部到达视窗顶部时
+					toggleActions: 'play none none none',
+					once: true,
+					markers: false, // 调试用，可以看到触发位置
+				},
+			});
+
+			tl.fromTo(
+				item.querySelector('.text-3xl'),
+				{
+					opacity: 0,
+					x: -50,
+				},
+				{
 					opacity: 1,
 					x: 0,
-					duration: 1,
-					delay: index * 0.2,
-					ease: 'power3.out',
-				});
-			}
+					duration: 0.6,
+					ease: 'power2.out',
+				}
+			).fromTo(
+				item.querySelector('.flex-1'),
+				{
+					opacity: 0,
+					x: 50,
+				},
+				{
+					opacity: 1,
+					x: 0,
+					duration: 0.6,
+					ease: 'power2.out',
+				},
+				'-=0.4'
+			);
 		});
-	});
 
-	// 进度条动画
-	gsap.to(progressLine.value, {
-		scrollTrigger: {
-			trigger: '#success',
-			start: 'top 80%',
-			end: 'bottom 20%',
-			scrub: true,
-		},
-		height: '100%',
-		width: '8px', // 设置进度条宽度
-		ease: 'none',
+		// 成果展示标题动画
+		gsap.from(successTitle.value, {
+			scrollTrigger: {
+				trigger: successTitle.value,
+				start: 'top 80%',
+				toggleActions: 'play none none reverse',
+			},
+			y: 50,
+			opacity: 0,
+			duration: 0.8,
+		});
+
+		// 项目卡片动画
+		requestAnimationFrame(() => {
+			successItems.value.forEach((item, index) => {
+				if (item) {
+					// 设置初始状态
+					gsap.set(item, {
+						opacity: 0,
+						x: index % 2 === 0 ? -50 : 50,
+					});
+
+					// 执行动画
+					gsap.to(item, {
+						scrollTrigger: {
+							trigger: item,
+							start: 'top 75%',
+							toggleActions: 'play none none reverse',
+						},
+						opacity: 1,
+						x: 0,
+						duration: 1,
+						delay: index * 0.2,
+						ease: 'power3.out',
+					});
+				}
+			});
+		});
+
+		// 进度条动画
+		gsap.to(progressLine.value, {
+			scrollTrigger: {
+				trigger: '#success',
+				start: 'top 80%',
+				end: 'bottom 20%',
+				scrub: true,
+			},
+			height: '100%',
+			width: '8px', // 设置进度条宽度
+			ease: 'none',
+		});
+
+		// 修改加入我们部分的动画配置
+		const joinSection = document.querySelector('#join');
+		const joinTl = gsap.timeline({
+			scrollTrigger: {
+				trigger: joinSection,
+				start: 'top bottom', // 修改触发位置
+				end: 'bottom top',
+				toggleActions: 'play none none none',
+				once: true,
+			},
+		});
+
+		joinTl
+			.fromTo(
+				joinSection.querySelector('h2'),
+				{
+					opacity: 0,
+					y: 50,
+				},
+				{
+					opacity: 1,
+					y: 0,
+					duration: 0.8,
+					ease: 'power2.out',
+				}
+			)
+			.fromTo(
+				joinSection.querySelector('p'),
+				{
+					opacity: 0,
+					y: 30,
+				},
+				{
+					opacity: 1,
+					y: 0,
+					duration: 0.6,
+				},
+				'-=0.4'
+			)
+			.fromTo(
+				joinSection.querySelector('button'),
+				{
+					opacity: 0,
+					scale: 0.5,
+				},
+				{
+					opacity: 1,
+					scale: 1,
+					duration: 0.8,
+					ease: 'back.out(1.7)',
+				},
+				'-=0.2'
+			);
+
+		// 初始化元素状态
+		const initializeElements = () => {
+			// 设置时间线元素的初始状态
+			timelineItems.forEach((item) => {
+				gsap.set(item.querySelector('.text-3xl'), { opacity: 0, x: -50 });
+				gsap.set(item.querySelector('.flex-1'), { opacity: 0, x: 50 });
+			});
+
+			// 设置加入我们部分的初始状态
+			if (joinSection) {
+				gsap.set(joinSection.querySelector('h2'), { opacity: 0, y: 50 });
+				gsap.set(joinSection.querySelector('p'), { opacity: 0, y: 30 });
+				gsap.set(joinSection.querySelector('button'), { opacity: 0, scale: 0.5 });
+			}
+		};
+
+		// 页面加载时初始化元素状态
+		initializeElements();
+
+		// 在页面刷新时重新初始化
+		window.addEventListener('beforeunload', initializeElements);
+
+		// 清理函数
+		return () => {
+			window.removeEventListener('beforeunload', initializeElements);
+			ctx.revert();
+		};
 	});
 });
+
+// onMounted(() => {
+// 	console.log('Component mounted');
+// 	console.log('successProjects:', successProjects);
+// 	console.log('successItems:', successItems.value);
+
+// 	// 标题动画
+// 	gsap.from(successTitle.value, {
+// 		scrollTrigger: {
+// 			trigger: successTitle.value,
+// 			start: 'top 80%',
+// 			toggleActions: 'play none none reverse',
+// 		},
+// 		y: 50,
+// 		opacity: 0,
+// 		duration: 0.8,
+// 	});
+
+// 	// 项目卡片动画
+// 	//requestAnimationFrame(() => {
+// 		successItems.value.forEach((item, index) => {
+// 			if (item) {
+// 				// 设置初始状态
+// 				gsap.set(item, {
+// 					opacity: 0,
+// 					x: index % 2 === 0 ? -50 : 50,
+// 				});
+
+// 				// 执行动画
+// 				gsap.to(item, {
+// 					scrollTrigger: {
+// 						trigger: item,
+// 						start: 'top 75%',
+// 						toggleActions: 'play none none reverse',
+// 					},
+// 					opacity: 1,
+// 					x: 0,
+// 					duration: 1,
+// 					delay: index * 0.2,
+// 					ease: 'power3.out',
+// 				});
+// 			}
+// 		});
+// 	//});
+
+// 	// 进度条动画
+// 	gsap.to(progressLine.value, {
+// 		scrollTrigger: {
+// 			trigger: '#success',
+// 			start: 'top 80%',
+// 			end: 'bottom 20%',
+// 			scrub: true,
+// 		},
+// 		height: '100%',
+// 		width: '8px', // 设置进度条宽度
+// 		ease: 'none',
+// 	});
+// });
 
 // 更新主题
 const updateTheme = () => {
@@ -916,33 +971,33 @@ const toggleDarkMode = () => {
 	updateTheme();
 };
 
-const initializeAnimations = () => {
-	// 检查是否所有元素都已加载
-	if (successItems.value.every((item) => item !== null)) {
-		successItems.value.forEach((item, index) => {
-			gsap.from(item, {
-				scrollTrigger: {
-					trigger: item,
-					start: 'top 75%',
-					toggleActions: 'play none none reverse',
-				},
-				opacity: 0,
-				x: index % 2 === 0 ? -50 : 50,
-				duration: 1,
-				delay: index * 0.2,
-				ease: 'power3.out',
-			});
-		});
-	}
-};
+// const initializeAnimations = () => {
+// 	// 检查是否所有元素都已加载
+// 	if (successItems.value.every((item) => item !== null)) {
+// 		successItems.value.forEach((item, index) => {
+// 			gsap.from(item, {
+// 				scrollTrigger: {
+// 					trigger: item,
+// 					start: 'top 75%',
+// 					toggleActions: 'play none none reverse',
+// 				},
+// 				opacity: 0,
+// 				x: index % 2 === 0 ? -50 : 50,
+// 				duration: 1,
+// 				delay: index * 0.2,
+// 				ease: 'power3.out',
+// 			});
+// 		});
+// 	}
+// };
 
-watch(
-	successItems,
-	() => {
-		initializeAnimations();
-	},
-	{ deep: true }
-);
+// watch(
+// 	successItems,
+// 	() => {
+// 		initializeAnimations();
+// 	},
+// 	{ deep: true }
+// );
 
 const scrollToSection = (href) => {
 	const el = document.querySelector(href);
