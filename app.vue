@@ -719,10 +719,21 @@ const timeline = [
 		desc: "首套社服选定，交流本内容优化",
 	},
 	{
-		year: "2024",
+		year: "2024.6",
 		title: "科技文化艺术节",
 		desc: "首次与科技社合作开展科技游园活动",
 	},
+	{
+		year: "2024.11",
+		title: "24届社团招新",
+		desc: "开展24届招新活动",
+	},
+	{
+		year: "2024.12",
+		title: "24届迎新",
+		desc: "开展24届迎新活动",
+	}
+	
 ];
 
 const scrollToSection = (href) => {
