@@ -684,7 +684,7 @@ onMounted(() => {
 			opacity: 1,
 			y: 0,
 			duration: 0.6,
-			delay: index * 0.2,
+			delay: index * 0.4,
 			ease: 'power2.out',
 		})
 			.to(
