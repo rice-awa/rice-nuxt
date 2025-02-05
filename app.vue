@@ -26,7 +26,11 @@
 							<!-- 主题切换按钮 -->
 							<button @click="toggleDarkMode" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
 								<svg v-if="isDarkMode" class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-									<path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+									<path
+										fill-rule="evenodd"
+										d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+										clip-rule="evenodd"
+									/>
 								</svg>
 								<svg v-else class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
 									<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
@@ -48,7 +52,14 @@
 			</div>
 
 			<!-- 移动端导航菜单 -->
-			<Transition enter-active-class="transition duration-200 ease-out" enter-from-class="transform translate-x-full opacity-0" enter-to-class="transform translate-x-0 opacity-100" leave-active-class="transition duration-200 ease-in" leave-from-class="transform translate-x-0 opacity-100" leave-to-class="transform translate-x-full opacity-0">
+			<Transition
+				enter-active-class="transition duration-200 ease-out"
+				enter-from-class="transform translate-x-full opacity-0"
+				enter-to-class="transform translate-x-0 opacity-100"
+				leave-active-class="transition duration-200 ease-in"
+				leave-from-class="transform translate-x-0 opacity-100"
+				leave-to-class="transform translate-x-full opacity-0"
+			>
 				<div v-if="isMobileMenuOpen" class="md:hidden fixed inset-y-0 right-0 z-40 w-64 bg-white dark:bg-gray-900 pt-20 shadow-lg">
 					<div class="px-6">
 						<div class="flex flex-col space-y-6">
@@ -58,10 +69,14 @@
 
 							<!-- 移动端主题切换按钮 -->
 							<button @click="toggleDarkMode" class="flex items-center space-x-2 text-lg font-medium text-gray-900 dark:text-gray-100">
-								<span>{{ isDarkMode ? "浅色模式" : "深色模式" }}</span>
+								<span>{{ isDarkMode ? '浅色模式' : '深色模式' }}</span>
 								<div class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800">
 									<svg v-if="isDarkMode" class="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-										<path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+										<path
+											fill-rule="evenodd"
+											d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+											clip-rule="evenodd"
+										/>
 									</svg>
 									<svg v-else class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
 										<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
@@ -136,7 +151,7 @@
 						</div>
 					</div>
 				</section>
-				
+
 				<!-- 社团部门 -->
 				<section id="departments" class="py-20">
 					<div class="container mx-auto px-6">
@@ -189,6 +204,49 @@
 										</ul>
 									</div>
 								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- 成果展示部分 -->
+				<section id="success" class="py-20 bg-gray-50 dark:bg-gray-900 relative z-10 min-h-screen">
+					<div class="container mx-auto px-6 relative">
+						<h2 ref="successTitle" class="text-4xl font-bold mb-24 text-center text-gray-900 dark:text-gray-300">成果展示</h2>
+
+						<!-- 内容布局 -->
+						<div class="relative">
+							<!-- 中间进度条 -->
+							<div class="absolute left-1/2 h-full -translate-x-1/2 w-px mx-auto">
+								<div class="h-full w-full bg-blue-100 dark:bg-blue-900/30"></div>
+								<div ref="progressLine" class="absolute top-0 w-full bg-blue-500" style="height: 0%"></div>
+							</div>
+
+							<!-- 项目卡片循环 -->
+							<div class="space-y-32">
+								<template v-for="(project, index) in successProjects" :key="project.id">
+									<div :ref="(el) => setItemRef(el, index)" class="relative flex flex-col lg:flex-row items-center gap-4">
+										<!-- 偶数项靠左，奇数项靠右 -->
+										<div class="relative w-full lg:w-1/2" :class="index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'">
+											<div class="overflow-hidden rounded-lg shadow-xl group aspect-video mx-auto max-w-full">
+												<img :src="project.image" :alt="project.title" @error="handleImageError" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110" />
+											</div>
+										</div>
+
+										<!-- 文字信息 -->
+										<div class="flex flex-col justify-center lg:w-1/2 text-center lg:text-left" :class="index % 2 === 0 ? 'lg:pl-8 lg:order-2' : 'lg:pr-8 lg:order-1'">
+											<h3 class="text-2xl font-bold text-gray-900 dark:text-gray-300">
+												{{ project.title }}
+											</h3>
+											<p class="text-lg text-gray-600 dark:text-gray-400 mt-2">
+												{{ project.description }}
+											</p>
+											<span class="inline-block text-blue-500 dark:text-blue-400 mt-2">
+												{{ project.date }}
+											</span>
+										</div>
+									</div>
+								</template>
 							</div>
 						</div>
 					</div>
@@ -247,9 +305,9 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ref, watch, onMounted } from 'vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const introText = ref(null);
 const departmentTitle = ref(null);
@@ -257,6 +315,40 @@ const deptCard1 = ref(null);
 const deptCard2 = ref(null);
 const deptCard3 = ref(null);
 
+// 成果展示数据
+const successProjects = [
+	{
+		id: 1,
+		title: '新世纪Cycles',
+		image: '/images/新世纪Cycles.png',
+		description: '使用 Blender 制作的3D建模作品',
+		date: '2024-01',
+	},
+	{
+		id: 2,
+		title: '3D建模作品',
+		image: '/images/校徽3D打印.png',
+		description: '校徽3D打印作品',
+		date: '2024-02',
+	},
+	{
+		id: 1,
+		title: '全栈官网',
+		image: '/images/web.png',
+		description: '使用 Vue3 + Nuxt3 开发的社团官方网站',
+		date: '2024-01',
+	},
+	{
+		id: 4,
+		title: '移动应用开发',
+		image: '/images/移动应用开发.webp',
+		description: 'Android/iOS移动应用开发项目',
+		date: '2024-04',
+	},
+];
+const successTitle = ref(null);
+const progressLine = ref(null);
+const successItems = ref(Array(successProjects.length).fill(null));
 // 注册 ScrollTrigger 插件
 gsap.registerPlugin(ScrollTrigger);
 
@@ -270,23 +362,32 @@ const handleMobileNavClick = (href) => {
 	isMobileMenuOpen.value = false;
 };
 
+// 添加设置 ref 的函数
+const setItemRef = (el, index) => {
+	if (el) {
+		successItems.value[index] = el;
+	}
+};
+
 // 在组件挂载时初始化主题
+
+/**
 onMounted(() => {
 	// 检查本地存储的主题设置
-	const savedTheme = localStorage.getItem("theme");
+	const savedTheme = localStorage.getItem('theme');
 	if (savedTheme) {
-		isDarkMode.value = savedTheme === "dark";
+		isDarkMode.value = savedTheme === 'dark';
 		// 立即应用保存的主题
 		updateTheme();
 	} else {
 		// 检查系统主题偏好
-		const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 		isDarkMode.value = prefersDark;
 		updateTheme();
 	}
 
 	// 监听系统主题变化
-	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
 		isDarkMode.value = e.matches;
 		updateTheme();
 	});
@@ -294,7 +395,7 @@ onMounted(() => {
 	// 创建GSAP上下文
 	const ctx = gsap.context(() => {
 		// 获取所有标题字符
-		const chars = titleRef.value.querySelectorAll("span");
+		const chars = titleRef.value.querySelectorAll('span');
 
 		// 设置初始状态
 		gsap.set(chars, {
@@ -306,44 +407,44 @@ onMounted(() => {
 		const tl = gsap.timeline();
 
 		// 第一行文字动画
-		const line1Chars = titleRef.value.querySelectorAll(".line1-char");
+		const line1Chars = titleRef.value.querySelectorAll('.line1-char');
 		tl.to(line1Chars, {
 			duration: 0.6, // 动画持续时间
 			opacity: 1, // 目标透明度
 			y: 0, // 目标位置
 			stagger: 0.1, // 字符之间的延迟
-			ease: "power2.out", // 动画缓动效果
+			ease: 'power2.out', // 动画缓动效果
 		})
 			// 第二行文字动画
 			.to(
-				titleRef.value.querySelectorAll(".line2-char"),
+				titleRef.value.querySelectorAll('.line2-char'),
 				{
 					duration: 0.6, // 动画持续时间
 					opacity: 1, // 目标透明度
 					y: 0, // 目标位置
 					stagger: 0.05, // 字符之间的延迟
-					ease: "power2.out", // 动画缓动效果
+					ease: 'power2.out', // 动画缓动效果
 				},
-				"-=0.3" // 与前一个动画重叠的时间
+				'-=0.3' // 与前一个动画重叠的时间
 			)
 			// 所有字符的下落动画
 			.to(
 				chars,
 				{
 					duration: 0.8, // 动画持续时间
-					y: "+=20", // 向下移动的距离
-					ease: "elastic.out(1, 0.4)", // 动画缓动效果
+					y: '+=20', // 向下移动的距离
+					ease: 'elastic.out(1, 0.4)', // 动画缓动效果
 					stagger: {
 						amount: 0.5, // 随机下落的时间
-						from: "random", // 从随机字符开始
+						from: 'random', // 从随机字符开始
 					},
 				},
-				"+=0.4" // 等待时间后开始下落动画
+				'+=0.4' // 等待时间后开始下落动画
 			);
 	}, titleRef);
 
 	// 监听滚动以关闭菜单
-	window.addEventListener("scroll", () => {
+	window.addEventListener('scroll', () => {
 		if (isMobileMenuOpen.value) {
 			isMobileMenuOpen.value = false;
 		}
@@ -352,21 +453,21 @@ onMounted(() => {
 	// 监听菜单状态变化
 	watch(isMobileMenuOpen, (isOpen) => {
 		if (isOpen) {
-			document.body.classList.add("overflow-hidden");
+			document.body.classList.add('overflow-hidden');
 		} else {
-			document.body.classList.remove("overflow-hidden");
+			document.body.classList.remove('overflow-hidden');
 		}
 	});
 
 	// 为特色部分添加滚动动画
-	const features = document.querySelectorAll("#features .container > div");
+	const features = document.querySelectorAll('#features .container > div');
 	features.forEach((feature, index) => {
 		gsap.from(feature, {
 			scrollTrigger: {
 				trigger: feature,
-				start: "top bottom-=100",
-				end: "top center",
-				toggleActions: "play none none none",
+				start: 'top bottom-=100',
+				end: 'top center',
+				toggleActions: 'play none none none',
 				once: true,
 			},
 			opacity: 0,
@@ -375,7 +476,7 @@ onMounted(() => {
 			scale: 0.8,
 			duration: 0.8,
 			delay: index * 0.2,
-			ease: "back.out(1.7)",
+			ease: 'back.out(1.7)',
 		});
 	});
 	// 创建介绍文字的动画
@@ -390,7 +491,7 @@ onMounted(() => {
 			y: 0,
 			duration: 1,
 			delay: 2.5,
-			ease: "power4.out",
+			ease: 'power4.out',
 		}
 	);
 
@@ -398,8 +499,8 @@ onMounted(() => {
 	gsap.from(departmentTitle.value, {
 		scrollTrigger: {
 			trigger: departmentTitle.value,
-			start: "top bottom-=100",
-			toggleActions: "play none none reverse",
+			start: 'top bottom-=100',
+			toggleActions: 'play none none reverse',
 			once: true,
 		},
 		opacity: 0,
@@ -413,43 +514,43 @@ onMounted(() => {
 		gsap.from(card, {
 			scrollTrigger: {
 				trigger: card,
-				start: "top bottom-=50",
-				toggleActions: "play none none reverse",
+				start: 'top bottom-=50',
+				toggleActions: 'play none none reverse',
 				once: true,
 			},
 			opacity: 0,
 			y: 100,
 			duration: 0.8,
 			delay: index * 0.2,
-			ease: "power2.out",
+			ease: 'power2.out',
 		});
 
 		// 添加hover效果
-		card.addEventListener("mouseenter", () => {
+		card.addEventListener('mouseenter', () => {
 			gsap.to(card, {
 				scale: 1.02,
 				duration: 0.3,
-				ease: "power2.out",
+				ease: 'power2.out',
 			});
 		});
 
-		card.addEventListener("mouseleave", () => {
+		card.addEventListener('mouseleave', () => {
 			gsap.to(card, {
 				scale: 1,
 				duration: 0.3,
-				ease: "power2.out",
+				ease: 'power2.out',
 			});
 		});
 	});
 
 	// 为列表项添加渐入动画
-	const listItems = document.querySelectorAll(".department-card li");
+	const listItems = document.querySelectorAll('.department-card li');
 	listItems.forEach((item, index) => {
 		gsap.from(item, {
 			scrollTrigger: {
 				trigger: item,
-				start: "top bottom-=20",
-				toggleActions: "play none none reverse",
+				start: 'top bottom-=20',
+				toggleActions: 'play none none reverse',
 			},
 			opacity: 0,
 			x: -20,
@@ -459,20 +560,20 @@ onMounted(() => {
 	});
 
 	// 为活动部分添加滚动动画
-	const activities = document.querySelectorAll("#activities .grid > div");
+	const activities = document.querySelectorAll('#activities .grid > div');
 	activities.forEach((activity, index) => {
 		// 设置初始状态
 		gsap.set(activity, { opacity: 0, y: 100 });
-		gsap.set(activity.querySelector("img"), { scale: 1.5 });
-		gsap.set(activity.querySelector("h3"), { opacity: 0, x: -30 });
-		gsap.set(activity.querySelector("p"), { opacity: 0, x: -20 });
+		gsap.set(activity.querySelector('img'), { scale: 1.5 });
+		gsap.set(activity.querySelector('h3'), { opacity: 0, x: -30 });
+		gsap.set(activity.querySelector('p'), { opacity: 0, x: -20 });
 
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: activity,
-				start: "top bottom-=100",
-				end: "top center",
-				toggleActions: "play none none none",
+				start: 'top bottom-=100',
+				end: 'top center',
+				toggleActions: 'play none none none',
 				once: true,
 			},
 		});
@@ -482,53 +583,53 @@ onMounted(() => {
 			y: 0,
 			duration: 0.6,
 			delay: index * 0.2,
-			ease: "power2.out",
+			ease: 'power2.out',
 		})
 			.to(
-				activity.querySelector("img"),
+				activity.querySelector('img'),
 				{
 					scale: 1,
 					duration: 1.2,
-					ease: "power2.out",
+					ease: 'power2.out',
 				},
-				"-=0.6" // 修改重叠时间
+				'-=0.6' // 修改重叠时间
 			)
 			.to(
-				activity.querySelector("h3"),
+				activity.querySelector('h3'),
 				{
 					opacity: 1,
 					x: 0,
 					duration: 0.5,
 				},
-				"-=0.5" // 修改重叠时间
+				'-=0.5' // 修改重叠时间
 			)
 			.to(
-				activity.querySelector("p"),
+				activity.querySelector('p'),
 				{
 					opacity: 1,
 					x: 0,
 					duration: 0.5,
 				},
-				"-=0.4" // 修改重叠时间
+				'-=0.4' // 修改重叠时间
 			);
 	});
 
 	// 修改时间线部分的动画配置
-	const timelineItems = document.querySelectorAll("#timeline .space-y-8 > div");
+	const timelineItems = document.querySelectorAll('#timeline .space-y-8 > div');
 	timelineItems.forEach((item, index) => {
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: item,
-				start: "top bottom-=100", // 当元素顶部到达视窗底部往上100px时
-				end: "bottom top", // 当元素底部到达视窗顶部时
-				toggleActions: "play none none none",
+				start: 'top bottom-=100', // 当元素顶部到达视窗底部往上100px时
+				end: 'bottom top', // 当元素底部到达视窗顶部时
+				toggleActions: 'play none none none',
 				once: true,
 				markers: false, // 调试用，可以看到触发位置
 			},
 		});
 
 		tl.fromTo(
-			item.querySelector(".text-3xl"),
+			item.querySelector('.text-3xl'),
 			{
 				opacity: 0,
 				x: -50,
@@ -537,10 +638,10 @@ onMounted(() => {
 				opacity: 1,
 				x: 0,
 				duration: 0.6,
-				ease: "power2.out",
+				ease: 'power2.out',
 			}
 		).fromTo(
-			item.querySelector(".flex-1"),
+			item.querySelector('.flex-1'),
 			{
 				opacity: 0,
 				x: 50,
@@ -549,27 +650,27 @@ onMounted(() => {
 				opacity: 1,
 				x: 0,
 				duration: 0.6,
-				ease: "power2.out",
+				ease: 'power2.out',
 			},
-			"-=0.4"
+			'-=0.4'
 		);
 	});
 
 	// 修改加入我们部分的动画配置
-	const joinSection = document.querySelector("#join");
+	const joinSection = document.querySelector('#join');
 	const joinTl = gsap.timeline({
 		scrollTrigger: {
 			trigger: joinSection,
-			start: "top bottom", // 修改触发位置
-			end: "bottom top",
-			toggleActions: "play none none none",
+			start: 'top bottom', // 修改触发位置
+			end: 'bottom top',
+			toggleActions: 'play none none none',
 			once: true,
 		},
 	});
 
 	joinTl
 		.fromTo(
-			joinSection.querySelector("h2"),
+			joinSection.querySelector('h2'),
 			{
 				opacity: 0,
 				y: 50,
@@ -578,11 +679,11 @@ onMounted(() => {
 				opacity: 1,
 				y: 0,
 				duration: 0.8,
-				ease: "power2.out",
+				ease: 'power2.out',
 			}
 		)
 		.fromTo(
-			joinSection.querySelector("p"),
+			joinSection.querySelector('p'),
 			{
 				opacity: 0,
 				y: 30,
@@ -592,10 +693,10 @@ onMounted(() => {
 				y: 0,
 				duration: 0.6,
 			},
-			"-=0.4"
+			'-=0.4'
 		)
 		.fromTo(
-			joinSection.querySelector("button"),
+			joinSection.querySelector('button'),
 			{
 				opacity: 0,
 				scale: 0.5,
@@ -604,24 +705,24 @@ onMounted(() => {
 				opacity: 1,
 				scale: 1,
 				duration: 0.8,
-				ease: "back.out(1.7)",
+				ease: 'back.out(1.7)',
 			},
-			"-=0.2"
+			'-=0.2'
 		);
 
 	// 初始化元素状态
 	const initializeElements = () => {
 		// 设置时间线元素的初始状态
 		timelineItems.forEach((item) => {
-			gsap.set(item.querySelector(".text-3xl"), { opacity: 0, x: -50 });
-			gsap.set(item.querySelector(".flex-1"), { opacity: 0, x: 50 });
+			gsap.set(item.querySelector('.text-3xl'), { opacity: 0, x: -50 });
+			gsap.set(item.querySelector('.flex-1'), { opacity: 0, x: 50 });
 		});
 
 		// 设置加入我们部分的初始状态
 		if (joinSection) {
-			gsap.set(joinSection.querySelector("h2"), { opacity: 0, y: 50 });
-			gsap.set(joinSection.querySelector("p"), { opacity: 0, y: 30 });
-			gsap.set(joinSection.querySelector("button"), { opacity: 0, scale: 0.5 });
+			gsap.set(joinSection.querySelector('h2'), { opacity: 0, y: 50 });
+			gsap.set(joinSection.querySelector('p'), { opacity: 0, y: 30 });
+			gsap.set(joinSection.querySelector('button'), { opacity: 0, scale: 0.5 });
 		}
 	};
 
@@ -629,23 +730,81 @@ onMounted(() => {
 	initializeElements();
 
 	// 在页面刷新时重新初始化
-	window.addEventListener("beforeunload", initializeElements);
+	window.addEventListener('beforeunload', initializeElements);
 
 	// 清理函数
 	return () => {
-		window.removeEventListener("beforeunload", initializeElements);
+		window.removeEventListener('beforeunload', initializeElements);
 		ctx.revert();
 	};
+});
+*/
+onMounted(() => {
+	console.log('Component mounted');
+	console.log('successProjects:', successProjects);
+	console.log('successItems:', successItems.value);
+
+	// 标题动画
+	gsap.from(successTitle.value, {
+		scrollTrigger: {
+			trigger: successTitle.value,
+			start: 'top 80%',
+			toggleActions: 'play none none reverse',
+		},
+		y: 50,
+		opacity: 0,
+		duration: 0.8,
+	});
+
+	// 项目卡片动画
+	requestAnimationFrame(() => {
+		successItems.value.forEach((item, index) => {
+			if (item) {
+				// 设置初始状态
+				gsap.set(item, {
+					opacity: 0,
+					x: index % 2 === 0 ? -50 : 50,
+				});
+
+				// 执行动画
+				gsap.to(item, {
+					scrollTrigger: {
+						trigger: item,
+						start: 'top 75%',
+						toggleActions: 'play none none reverse',
+					},
+					opacity: 1,
+					x: 0,
+					duration: 1,
+					delay: index * 0.2,
+					ease: 'power3.out',
+				});
+			}
+		});
+	});
+
+	// 进度条动画
+	gsap.to(progressLine.value, {
+		scrollTrigger: {
+			trigger: '#success',
+			start: 'top 80%',
+			end: 'bottom 20%',
+			scrub: true,
+		},
+		height: '100%',
+		width: '8px', // 设置进度条宽度
+		ease: 'none',
+	});
 });
 
 // 更新主题
 const updateTheme = () => {
 	if (isDarkMode.value) {
-		document.documentElement.classList.add("dark");
-		localStorage.setItem("theme", "dark");
+		document.documentElement.classList.add('dark');
+		localStorage.setItem('theme', 'dark');
 	} else {
-		document.documentElement.classList.remove("dark");
-		localStorage.setItem("theme", "light");
+		document.documentElement.classList.remove('dark');
+		localStorage.setItem('theme', 'light');
 	}
 };
 
@@ -656,105 +815,133 @@ const toggleDarkMode = () => {
 };
 
 const navLinks = [
-	{ text: "社团特色", href: "#features" },
-	{ text: "近期活动", href: "#activities" },
-	{ text: "发展历程", href: "#timeline" },
-	{ text: "社团部门", href: "#departments" },
-	{ text: "加入我们", href: "#join" },
+	{ text: '社团特色', href: '#features' },
+	{ text: '近期活动', href: '#activities' },
+	{ text: '发展历程', href: '#timeline' },
+	{ text: '社团部门', href: '#departments' },
+	{ text: '成果展示', href: '#success' },
+	{ text: '加入我们', href: '#join' },
 ];
 
 const features = [
 	{
-		icon: "ph:code-bold",
-		title: "前沿技术",
-		desc: "掌握最新开发工具与框架",
+		icon: 'ph:code-bold',
+		title: '前沿技术',
+		desc: '掌握最新开发工具与框架',
 	},
 	{
-		icon: "ph:lightbulb-bold",
-		title: "创新项目",
-		desc: "参与多个创新项目的开发",
+		icon: 'ph:lightbulb-bold',
+		title: '创新项目',
+		desc: '参与多个创新项目的开发',
 	},
 	{
-		icon: "ph:users-bold",
-		title: "团队合作",
-		desc: "与团队成员合作完成项目",
+		icon: 'ph:users-bold',
+		title: '团队合作',
+		desc: '与团队成员合作完成项目',
 	},
 	{
-		icon: "ph:graduation-cap-bold",
-		title: "实践经验",
-		desc: "获得实践经验和技能提升",
+		icon: 'ph:graduation-cap-bold',
+		title: '实践经验',
+		desc: '获得实践经验和技能提升',
 	},
 ];
 
 const activities = [
 	{
-		title: "学习开发知识",
-		desc: "学习有关编程知识，提升自身开发能力",
-		date: "2024年6月10日",
-		image: "/images/社员们正在学习编程知识.webp",
+		title: '学习开发知识',
+		desc: '学习有关编程知识，提升自身开发能力',
+		date: '2024年6月10日',
+		image: '/images/社员们正在学习编程知识.webp',
 	},
 	{
-		title: "3D建模技术讲座",
-		desc: "社团合作开展3D建模科普",
-		date: "2024年6月7日",
-		image: "/images/大社开展3D建模科普.webp",
+		title: '3D建模技术讲座',
+		desc: '社团合作开展3D建模科普',
+		date: '2024年6月7日',
+		image: '/images/大社开展3D建模科普.webp',
 	},
 	{
-		title: "社团文化艺术节",
-		desc: "社团文化艺术节，举行有趣的社文小游戏",
-		date: "2024年6月6日",
-		image: "/images/开展社团文化艺术节小游戏.webp",
+		title: '社团文化艺术节',
+		desc: '社团文化艺术节，举行有趣的社文小游戏',
+		date: '2024年6月6日',
+		image: '/images/开展社团文化艺术节小游戏.webp',
 	},
 ];
 
 const timeline = [
 	{
-		year: "2021.11",
-		title: "社团成立",
-		desc: "全栈信息技术社正式成立，确定部门，开启技术探索之旅",
+		year: '2021.11',
+		title: '社团成立',
+		desc: '全栈信息技术社正式成立，确定部门，开启技术探索之旅',
 	},
 	{
-		year: "2021.12",
-		title: "开展迎新讲座--星辰大海",
-		desc: "举办信息技术讲座，C++编程教学",
+		year: '2021.12',
+		title: '开展迎新讲座--星辰大海',
+		desc: '举办信息技术讲座，C++编程教学',
 	},
 	{
-		year: "2022",
-		title: "开创社团交流本",
-		desc: "社团交流本以及社团明信片选定",
+		year: '2022',
+		title: '开创社团交流本',
+		desc: '社团交流本以及社团明信片选定',
 	},
 	{
-		year: "2023",
-		title: "部门更新",
-		desc: "新增硬件，数字媒体技术相关部门，新增部长，联络员",
+		year: '2023',
+		title: '部门更新',
+		desc: '新增硬件，数字媒体技术相关部门，新增部长，联络员',
 	},
 	{
-		year: "2024",
-		title: "社服与交流本",
-		desc: "首套社服选定，交流本内容优化",
+		year: '2024',
+		title: '社服与交流本',
+		desc: '首套社服选定，交流本内容优化',
 	},
 	{
-		year: "2024.6",
-		title: "科技文化艺术节",
-		desc: "首次与科技社合作开展科技游园活动",
+		year: '2024.6',
+		title: '科技文化艺术节',
+		desc: '首次与科技社合作开展科技游园活动',
 	},
 	{
-		year: "2024.11",
-		title: "24届社团招新",
-		desc: "开展24届招新活动",
+		year: '2024.11',
+		title: '24届社团招新',
+		desc: '开展24届招新活动',
 	},
 	{
-		year: "2024.12",
-		title: "24届迎新",
-		desc: "开展24届迎新活动",
-	}
-	
+		year: '2024.12',
+		title: '24届迎新',
+		desc: '开展24届迎新活动',
+	},
 ];
+
+const initializeAnimations = () => {
+	// 检查是否所有元素都已加载
+	if (successItems.value.every((item) => item !== null)) {
+		successItems.value.forEach((item, index) => {
+			gsap.from(item, {
+				scrollTrigger: {
+					trigger: item,
+					start: 'top 75%',
+					toggleActions: 'play none none reverse',
+				},
+				opacity: 0,
+				x: index % 2 === 0 ? -50 : 50,
+				duration: 1,
+				delay: index * 0.2,
+				ease: 'power3.out',
+			});
+		});
+	}
+};
+
+watch(
+	successItems,
+	() => {
+		initializeAnimations();
+	},
+	{ deep: true }
+);
 
 const scrollToSection = (href) => {
 	const el = document.querySelector(href);
 	if (el) {
-		el.scrollIntoView({ behavior: "smooth" });
+		el.scrollIntoView({ behavior: 'smooth' });
 	}
 };
 
@@ -762,8 +949,8 @@ const titleRef = ref(null);
 
 // 定义标题文字和字符透明度数组
 const titleLines = {
-	line1: "探索数字宇宙".split(""),
-	line2: "FULLSTACK".split(""),
+	line1: '探索数字宇宙'.split(''),
+	line2: 'FULLSTACK'.split(''),
 };
 </script>
 
@@ -797,7 +984,7 @@ const titleLines = {
 }
 
 .nav-link::after {
-	content: "";
+	content: '';
 	position: absolute;
 	bottom: -2px;
 	left: 0;
@@ -1047,7 +1234,7 @@ button.bg-gradient-to-r:hover {
 
 /* 为内容区域添加渐变边框效果 */
 .relative.z-10::before {
-	content: "";
+	content: '';
 	position: absolute;
 	top: -1px;
 	left: 0;
@@ -1138,7 +1325,7 @@ nav {
 }
 
 #join button::before {
-	content: "";
+	content: '';
 	position: absolute;
 	top: 0;
 	left: -100%;
@@ -1152,7 +1339,6 @@ nav {
 	left: 100%;
 }
 
-/* 在 style 标签中添加 */
 .scroll-trigger-item {
 	visibility: hidden; /* 初始隐藏所有动画元素 */
 }
@@ -1206,4 +1392,99 @@ body {
 	list-style-type: disc;
 	margin-left: 1.5rem;
 }
+
+/* 成果展示部分 */
+/* 父容器 */
+#success {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 中间进度条 */
+#success .progress-line {
+  width: 8px; /* 加粗进度条 */
+  background-color: #3b82f6;
+  transition: height 0.3s ease; /* 平滑动画 */
+}
+
+/* 项目卡片 */
+.success-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  width: 100%;
+}
+
+/* 图片样式 */
+.success-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.success-item:hover img {
+  transform: scale(1.05); /* 鼠标悬停时放大图片 */
+}
+
+/* 文字信息 */
+.success-item h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937; /* 深灰色 */
+  transition: color 0.3s ease;
+}
+
+.success-item p {
+  margin: 0;
+  font-size: 1rem;
+  color: #6b7280; /* 浅灰色 */
+  transition: color 0.3s ease;
+}
+
+.success-item span {
+  font-size: 0.875rem;
+  color: #3b82f6; /* 蓝色 */
+}
+
+/* 响应式调整 */
+@media (min-width: 1024px) {
+  .success-item {
+    flex-direction: row; /* 大屏幕水平排列 */
+    gap: 2rem;
+  }
+
+  /* 偶数项与奇数项的方向控制 */
+  .success-item:nth-child(odd) {
+    flex-direction: row-reverse; /* 奇数项反转图片和文字 */
+  }
+}
+
+@media (max-width: 768px) {
+  #success .relative {
+    padding: 0 1rem; /* 确保内容不贴边 */
+  }
+
+  /* 图片与文字垂直堆叠 */
+  .success-item {
+    flex-direction: column;
+  }
+
+  /* 文字居中对齐 */
+  #success .text-left {
+    text-align: center;
+  }
+
+  #success .lg\:pl-8,
+  #success .lg\:pr-8 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
 </style>
