@@ -315,37 +315,141 @@ const deptCard1 = ref(null);
 const deptCard2 = ref(null);
 const deptCard3 = ref(null);
 
+const navLinks = [
+	{ text: '社团特色', href: '#features' },
+	{ text: '近期活动', href: '#activities' },
+	{ text: '发展历程', href: '#timeline' },
+	{ text: '社团部门', href: '#departments' },
+	{ text: '成果展示', href: '#success' },
+	{ text: '加入我们', href: '#join' },
+];
+
+const features = [
+	{
+		icon: 'ph:code-bold',
+		title: '前沿技术',
+		desc: '掌握最新开发工具与框架',
+	},
+	{
+		icon: 'ph:lightbulb-bold',
+		title: '创新项目',
+		desc: '参与多个创新项目的开发',
+	},
+	{
+		icon: 'ph:users-bold',
+		title: '团队合作',
+		desc: '与团队成员合作完成项目',
+	},
+	{
+		icon: 'ph:graduation-cap-bold',
+		title: '实践经验',
+		desc: '获得实践经验和技能提升',
+	},
+];
+
+const activities = [
+	{
+		title: '学习开发知识',
+		desc: '学习有关编程知识，提升自身开发能力',
+		date: '2024年6月10日',
+		image: '/images/社员们正在学习编程知识.webp',
+	},
+	{
+		title: '3D建模技术讲座',
+		desc: '社团合作开展3D建模科普',
+		date: '2024年6月7日',
+		image: '/images/大社开展3D建模科普.webp',
+	},
+	{
+		title: '社团文化艺术节',
+		desc: '社团文化艺术节，举行有趣的社文小游戏',
+		date: '2024年6月6日',
+		image: '/images/开展社团文化艺术节小游戏.webp',
+	},
+];
+
+const timeline = [
+	{
+		year: '2021.11',
+		title: '社团成立',
+		desc: '全栈信息技术社正式成立，确定部门，开启技术探索之旅',
+	},
+	{
+		year: '2021.12',
+		title: '开展迎新讲座--星辰大海',
+		desc: '举办信息技术讲座，C++编程教学',
+	},
+	{
+		year: '2022',
+		title: '开创社团交流本',
+		desc: '社团交流本以及社团明信片选定',
+	},
+	{
+		year: '2023',
+		title: '部门更新',
+		desc: '新增硬件，数字媒体技术相关部门，新增部长，联络员',
+	},
+	{
+		year: '2024',
+		title: '社服与交流本',
+		desc: '首套社服选定，交流本内容优化',
+	},
+	{
+		year: '2024.6',
+		title: '科技文化艺术节',
+		desc: '首次与科技社合作开展科技游园活动',
+	},
+	{
+		year: '2024.11',
+		title: '24届社团招新',
+		desc: '开展24届招新活动',
+	},
+	{
+		year: '2024.12',
+		title: '24届迎新',
+		desc: '开展24届迎新活动',
+	},
+];
+
 // 成果展示数据
 const successProjects = [
 	{
 		id: 1,
 		title: '新世纪Cycles',
-		image: '/images/新世纪Cycles.png',
+		image: '/images/新世纪Cycles.webp',
 		description: '使用 Blender 制作的3D建模作品',
-		date: '2024-01',
+		date: '2024-04',
 	},
 	{
 		id: 2,
 		title: '3D建模作品',
 		image: '/images/校徽3D打印.png',
 		description: '校徽3D打印作品',
-		date: '2024-02',
+		date: '2024-05',
 	},
 	{
-		id: 1,
-		title: '全栈官网',
-		image: '/images/web.png',
-		description: '使用 Vue3 + Nuxt3 开发的社团官方网站',
-		date: '2024-01',
+		id: 3,
+		title: '宿舍全景图',
+		image: '/images/宿舍全景图.webp',
+		description: '使用全景相机拍摄的宿舍图片',
+		date: '2024-6',
 	},
 	{
 		id: 4,
-		title: '移动应用开发',
-		image: '/images/移动应用开发.webp',
-		description: 'Android/iOS移动应用开发项目',
-		date: '2024-04',
+		title: '全栈官网',
+		image: '/images/官网截图.webp',
+		description: '使用 Vue3 + Nuxt3 开发的社团官方网站',
+		date: '2025-02',
+	},
+	{
+		id: 5,
+		title: '新社徽',
+		image: '/images/2025新社徽.webp',
+		description: '全新设计的2025全栈社徽',
+		date: '2025-2',
 	},
 ];
+
 const successTitle = ref(null);
 const progressLine = ref(null);
 const successItems = ref(Array(successProjects.length).fill(null));
@@ -370,8 +474,6 @@ const setItemRef = (el, index) => {
 };
 
 // 在组件挂载时初始化主题
-
-/**
 onMounted(() => {
 	// 检查本地存储的主题设置
 	const savedTheme = localStorage.getItem('theme');
@@ -738,7 +840,7 @@ onMounted(() => {
 		ctx.revert();
 	};
 });
-*/
+
 onMounted(() => {
 	console.log('Component mounted');
 	console.log('successProjects:', successProjects);
@@ -813,102 +915,6 @@ const toggleDarkMode = () => {
 	isDarkMode.value = !isDarkMode.value;
 	updateTheme();
 };
-
-const navLinks = [
-	{ text: '社团特色', href: '#features' },
-	{ text: '近期活动', href: '#activities' },
-	{ text: '发展历程', href: '#timeline' },
-	{ text: '社团部门', href: '#departments' },
-	{ text: '成果展示', href: '#success' },
-	{ text: '加入我们', href: '#join' },
-];
-
-const features = [
-	{
-		icon: 'ph:code-bold',
-		title: '前沿技术',
-		desc: '掌握最新开发工具与框架',
-	},
-	{
-		icon: 'ph:lightbulb-bold',
-		title: '创新项目',
-		desc: '参与多个创新项目的开发',
-	},
-	{
-		icon: 'ph:users-bold',
-		title: '团队合作',
-		desc: '与团队成员合作完成项目',
-	},
-	{
-		icon: 'ph:graduation-cap-bold',
-		title: '实践经验',
-		desc: '获得实践经验和技能提升',
-	},
-];
-
-const activities = [
-	{
-		title: '学习开发知识',
-		desc: '学习有关编程知识，提升自身开发能力',
-		date: '2024年6月10日',
-		image: '/images/社员们正在学习编程知识.webp',
-	},
-	{
-		title: '3D建模技术讲座',
-		desc: '社团合作开展3D建模科普',
-		date: '2024年6月7日',
-		image: '/images/大社开展3D建模科普.webp',
-	},
-	{
-		title: '社团文化艺术节',
-		desc: '社团文化艺术节，举行有趣的社文小游戏',
-		date: '2024年6月6日',
-		image: '/images/开展社团文化艺术节小游戏.webp',
-	},
-];
-
-const timeline = [
-	{
-		year: '2021.11',
-		title: '社团成立',
-		desc: '全栈信息技术社正式成立，确定部门，开启技术探索之旅',
-	},
-	{
-		year: '2021.12',
-		title: '开展迎新讲座--星辰大海',
-		desc: '举办信息技术讲座，C++编程教学',
-	},
-	{
-		year: '2022',
-		title: '开创社团交流本',
-		desc: '社团交流本以及社团明信片选定',
-	},
-	{
-		year: '2023',
-		title: '部门更新',
-		desc: '新增硬件，数字媒体技术相关部门，新增部长，联络员',
-	},
-	{
-		year: '2024',
-		title: '社服与交流本',
-		desc: '首套社服选定，交流本内容优化',
-	},
-	{
-		year: '2024.6',
-		title: '科技文化艺术节',
-		desc: '首次与科技社合作开展科技游园活动',
-	},
-	{
-		year: '2024.11',
-		title: '24届社团招新',
-		desc: '开展24届招新活动',
-	},
-	{
-		year: '2024.12',
-		title: '24届迎新',
-		desc: '开展24届迎新活动',
-	},
-];
 
 const initializeAnimations = () => {
 	// 检查是否所有元素都已加载
@@ -1396,95 +1402,94 @@ body {
 /* 成果展示部分 */
 /* 父容器 */
 #success {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
 }
 
 /* 中间进度条 */
 #success .progress-line {
-  width: 8px; /* 加粗进度条 */
-  background-color: #3b82f6;
-  transition: height 0.3s ease; /* 平滑动画 */
+	width: 8px; /* 加粗进度条 */
+	background-color: #3b82f6;
+	transition: height 0.3s ease; /* 平滑动画 */
 }
 
 /* 项目卡片 */
 .success-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  position: relative;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	position: relative;
+	width: 100%;
 }
 
 /* 图片样式 */
 .success-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-  transition: transform 0.3s ease;
+	width: 100%;
+	height: auto;
+	border-radius: 0.5rem;
+	transition: transform 0.3s ease;
 }
 
 .success-item:hover img {
-  transform: scale(1.05); /* 鼠标悬停时放大图片 */
+	transform: scale(1.05); /* 鼠标悬停时放大图片 */
 }
 
 /* 文字信息 */
 .success-item h3 {
-  margin: 0;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #1f2937; /* 深灰色 */
-  transition: color 0.3s ease;
+	margin: 0;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #1f2937; /* 深灰色 */
+	transition: color 0.3s ease;
 }
 
 .success-item p {
-  margin: 0;
-  font-size: 1rem;
-  color: #6b7280; /* 浅灰色 */
-  transition: color 0.3s ease;
+	margin: 0;
+	font-size: 1rem;
+	color: #6b7280; /* 浅灰色 */
+	transition: color 0.3s ease;
 }
 
 .success-item span {
-  font-size: 0.875rem;
-  color: #3b82f6; /* 蓝色 */
+	font-size: 0.875rem;
+	color: #3b82f6; /* 蓝色 */
 }
 
 /* 响应式调整 */
 @media (min-width: 1024px) {
-  .success-item {
-    flex-direction: row; /* 大屏幕水平排列 */
-    gap: 2rem;
-  }
+	.success-item {
+		flex-direction: row; /* 大屏幕水平排列 */
+		gap: 2rem;
+	}
 
-  /* 偶数项与奇数项的方向控制 */
-  .success-item:nth-child(odd) {
-    flex-direction: row-reverse; /* 奇数项反转图片和文字 */
-  }
+	/* 偶数项与奇数项的方向控制 */
+	.success-item:nth-child(odd) {
+		flex-direction: row-reverse; /* 奇数项反转图片和文字 */
+	}
 }
 
 @media (max-width: 768px) {
-  #success .relative {
-    padding: 0 1rem; /* 确保内容不贴边 */
-  }
+	#success .relative {
+		padding: 0 1rem; /* 确保内容不贴边 */
+	}
 
-  /* 图片与文字垂直堆叠 */
-  .success-item {
-    flex-direction: column;
-  }
+	/* 图片与文字垂直堆叠 */
+	.success-item {
+		flex-direction: column;
+	}
 
-  /* 文字居中对齐 */
-  #success .text-left {
-    text-align: center;
-  }
+	/* 文字居中对齐 */
+	#success .text-left {
+		text-align: center;
+	}
 
-  #success .lg\:pl-8,
-  #success .lg\:pr-8 {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
+	#success .lg\:pl-8,
+	#success .lg\:pr-8 {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
 }
-
 </style>
