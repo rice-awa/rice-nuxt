@@ -91,6 +91,19 @@
 
 			<!-- 其他内容区域 - 使用白色背景 -->
 			<div class="relative bg-white dark:bg-gray-900">
+				<!-- 社团特色 -->
+				<section id="features" class="py-20">
+					<div class="container mx-auto px-6 grid md:grid-cols-4 gap-8">
+						<div v-for="(feature, index) in features" :key="index" class="p-8 bg-white rounded-xl hover:shadow-xl transition-all border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+							<div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+								<Icon :name="feature.icon" class="w-8 h-8 text-blue-500" />
+							</div>
+							<h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-300">{{ feature.title }}</h3>
+							<p class="text-gray-600 dark:text-gray-400">{{ feature.desc }}</p>
+						</div>
+					</div>
+				</section>
+
 				<!-- 近期活动 -->
 				<section id="activities" class="py-20 bg-gray-50 dark:bg-gray-900">
 					<div class="container mx-auto px-6">
@@ -123,8 +136,9 @@
 						</div>
 					</div>
 				</section>
-
-				<section id="features" class="py-20">
+				
+				<!-- 社团部门 -->
+				<section id="departments" class="py-20">
 					<div class="container mx-auto px-6">
 						<h2 class="text-4xl font-bold mb-16 text-center text-gray-900 dark:text-gray-300" ref="departmentTitle">下设部门</h2>
 						<div class="grid md:grid-cols-3 gap-12">
@@ -645,6 +659,7 @@ const navLinks = [
 	{ text: "社团特色", href: "#features" },
 	{ text: "近期活动", href: "#activities" },
 	{ text: "发展历程", href: "#timeline" },
+	{ text: "社团部门", href: "#departments" },
 	{ text: "加入我们", href: "#join" },
 ];
 
@@ -788,7 +803,7 @@ const titleLines = {
 	left: 0;
 	width: 0;
 	height: 2px;
-	@apply bg-gradient-to-r from-blue-500 to-purple-600;
+	background: linear-gradient(to right, #3b82f6, #a855f7); /* 使用 Tailwind 的颜色值 */
 	transition: width 0.3s ease;
 }
 
