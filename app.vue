@@ -410,6 +410,11 @@ const timeline = [
 		title: '24届迎新',
 		desc: '开展24届迎新活动',
 	},
+	{
+		year: '2025.5.10',
+		title: '科技文化艺术节',
+		desc: '2025届科技文化艺术节',
+	},
 ];
 
 // 成果展示数据
@@ -433,7 +438,7 @@ const successProjects = [
 		title: '宿舍全景图',
 		image: '/images/宿舍全景图.webp',
 		description: '使用全景相机拍摄的宿舍图片',
-		date: '2024-6',
+		date: '2024-06',
 	},
 	{
 		id: 4,
@@ -447,7 +452,7 @@ const successProjects = [
 		title: '新社徽',
 		image: '/images/2025新社徽.webp',
 		description: '全新设计的2025全栈社徽',
-		date: '2025-2',
+		date: '2025-02',
 	},
 ];
 
