@@ -12,7 +12,7 @@
   "dependencies": {
     "@nuxt/image": "^1.9.0",
     "@nuxtjs/robots": "^5.2.2",
-    "@nuxtjs/sitemap": "latest",
+    "@nuxtjs/sitemap": "^7.4.3",
     "@nuxtjs/tailwindcss": "^6.13.1",
     "gsap": "^3.12.7",
     "ipx": "^3.0.1",
