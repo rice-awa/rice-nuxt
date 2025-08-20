@@ -23,6 +23,7 @@
 <script setup>
 // 导入ImageCard组件
 import ImageCard from '~/components/common/ImageCard.vue';
+import SectionTitle from '~/components/common/SectionTitle.vue';
 import { onMounted } from 'vue';
 import { gsap } from 'gsap';
 

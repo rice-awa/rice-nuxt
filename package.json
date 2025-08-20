@@ -18,6 +18,7 @@
     "ipx": "^3.0.1",
     "nuxt": "^3.15.2",
     "nuxt-icon": "^1.0.0-beta.7",
+    "v-gsap-nuxt": "^1.4.4",
     "vue": "latest",
     "vue-router": "latest"
   },

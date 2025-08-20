@@ -58,6 +58,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import SectionTitle from '~/components/common/SectionTitle.vue';
 import { gsap } from 'gsap';
 
 const departmentTitle = ref(null);
