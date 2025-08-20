@@ -125,3 +125,88 @@ onMounted(() => {
   });
 });
 </script>
+
+<style>
+/* 为标题字符添加悬停效果 */
+h1 span {
+  display: inline-block;
+  cursor: default;
+}
+
+h1 span:hover {
+  animation: bounce 0.7s cubic-bezier(0.25, 0, 0.2, 1);
+  background-image: linear-gradient(to right bottom, #3b82f6, #6163f4, #7f4af8);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* 添加字符动画相关样式 */
+.char-enter-active {
+  transition: all 0.5s cubic-bezier(0.3, 0, 0.2, 1);
+}
+
+.char-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.char-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bg-gradient-to-b:hover,
+.bg-gradient-to-br:hover {
+  background-position: 0 100%;
+}
+
+/* 优化按钮悬停效果 */
+button.bg-gradient-to-r {
+  background-size: 200% auto;
+  transition: all 0.3s ease;
+}
+
+button.bg-gradient-to-r:hover {
+  background-position: right center;
+}
+
+/* 添加字符动画样式 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.char-animate {
+  animation: fadeInUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 确保字符动画性能优化 */
+.line1-char,
+.line2-char {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 添加到现有的 style 标签中 */
+.inline-block {
+  display: inline-block;
+  overflow: hidden;
+}
+</style>
