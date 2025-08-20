@@ -8,7 +8,7 @@
           :key="activity.title"
           class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all dark:bg-gray-800"
         >
-          <div class="w-full h-48 bg-blue-100 rounded-lg mb-6 overflow-hidden">
+          <div class="w-full aspect-video bg-blue-100 rounded-lg mb-6 overflow-hidden">
             <ImageCard :image-src="activity.image" :alt-text="activity.title" />
           </div>
           <h3 class="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-300">{{ activity.title }}</h3>
