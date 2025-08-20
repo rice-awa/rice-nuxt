@@ -6,7 +6,7 @@
     </div>
 
     <!-- 内容容器 -->
-    <div class="relative z-10 min-h-[200vh]">
+    <div class="relative z-10">
       <!-- 导航栏 -->
       <AppHeader />
 

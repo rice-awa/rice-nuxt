@@ -2,11 +2,11 @@
   <section id="features" class="py-20" role="region" aria-labelledby="features-title">
     <div class="container mx-auto px-6">
       <SectionTitle id="features-title">社团特色</SectionTitle>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div
           v-for="(feature, index) in features"
           :key="index"
-          class="p-8 bg-white rounded-xl hover:shadow-xl transition-all border border-gray-100 dark:bg-gray-800 dark:border-gray-700"
+          class="p-6 bg-white rounded-xl hover:shadow-xl transition-all border border-gray-100 dark:bg-gray-800 dark:border-gray-700"
           role="article"
           aria-labelledby="feature-title-{{ index }}"
         >

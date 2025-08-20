@@ -2,11 +2,11 @@
   <section id="activities" class="py-20 bg-gray-50 dark:bg-gray-900">
     <div class="container mx-auto px-6">
       <SectionTitle>近期活动</SectionTitle>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div
           v-for="activity in activities"
           :key="activity.title"
-          class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all dark:bg-gray-800"
+          class="bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition-all dark:bg-gray-800"
         >
           <div class="w-full aspect-video bg-blue-100 rounded-lg mb-6 overflow-hidden">
             <ImageCard :image-src="activity.image" :alt-text="activity.title" />
