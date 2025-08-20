@@ -1,7 +1,7 @@
 <template>
   <section class="h-screen flex items-center justify-center relative" role="region" aria-labelledby="hero-title">
     <div class="container mx-auto px-6 text-center">
-      <h1 id="hero-title" ref="titleRef" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 drop-shadow-sm flex flex-col gap-4">
+      <h1 id="hero-title" ref="titleRef" class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 drop-shadow-sm flex flex-col gap-4">
         <div class="flex justify-center">
           <span
             v-for="(char, index) in titleLines.line1"
