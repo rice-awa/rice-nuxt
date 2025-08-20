@@ -52,7 +52,7 @@ const features = [
 
 onMounted(() => {
   // 为特色部分添加滚动动画
-  const features = document.querySelectorAll('#features .container > div');
+  const features = document.querySelectorAll('#features .container > div > div');
   features.forEach((feature, index) => {
     // 为动画元素添加 will-change 属性
     feature.style.willChange = 'transform, opacity';
