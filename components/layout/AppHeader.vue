@@ -16,7 +16,8 @@
             :key="index"
             :to="link.href"
             class="text-gray-600 hover:text-blue-500 transition-all duration-300 text-sm font-medium nav-link dark:text-gray-300 dark:hover:text-blue-400"
-            @click.prevent="scrollToSection(link.href)">
+            @click.prevent="scrollToSection(link.href)"
+            :class="{ 'cursor-pointer': link.isRoute }">
             {{ link.text }}
           </NuxtLink>
           <ThemeToggle />
@@ -54,6 +55,7 @@ const navLinks = [
   { text: '社团部门', href: '#departments' },
   { text: '成果展示', href: '#success' },
   { text: '加入我们', href: '#join' },
+  { text: '作品展示', href: '/works', isRoute: true },
 ];
 
 const isMobileMenuOpen = useState('isMobileMenuOpen', () => false);
@@ -63,6 +65,14 @@ const toggleMobileMenu = () => {
 };
 
 const scrollToSection = (href) => {
+  // 如果是路由链接，直接导航
+  if (href.startsWith('/')) {
+    navigateTo(href);
+    isMobileMenuOpen.value = false;
+    return;
+  }
+  
+  // 如果是页面内锚点链接
   const el = document.querySelector(href);
   if (el) {
     el.scrollIntoView({ behavior: 'smooth' });
