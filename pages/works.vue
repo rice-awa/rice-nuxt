@@ -14,7 +14,7 @@
         <!-- 页面标题 -->
         <div class="text-center mb-16">
           <h1 class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-4">
-            作品展示
+            社团成员作品展示
           </h1>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             探索我们社团成员的精彩创作，从编程项目到设计作品，展现全栈开发的无限可能
@@ -59,9 +59,17 @@
                 <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">
                   {{ work.description }}
                 </p>
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span class="text-sm text-gray-600 dark:text-gray-400">{{ work.author }}</span>
+                  </div>
+                  <span class="text-xs text-gray-500">{{ work.date }}</span>
+                </div>
                 <div class="flex items-center justify-between">
                   <span class="text-sm text-blue-500 font-medium">{{ work.category }}</span>
-                  <span class="text-xs text-gray-500">{{ work.date }}</span>
                 </div>
               </div>
             </div>
@@ -135,6 +143,12 @@
                     </span>
                     <span class="text-gray-500 text-sm">{{ currentWork.date }}</span>
                   </div>
+                  <div class="flex items-center gap-2 mb-4">
+                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span class="text-gray-600 dark:text-gray-400 font-medium">作者：{{ currentWork.author }}</span>
+                  </div>
                   <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
                     {{ currentWork.description }}
                   </p>
@@ -191,15 +205,16 @@ import AppFooter from '~/components/layout/AppFooter.vue';
 // 作品数据
 const works = [
   {
-    title: '智能校园管理系统',
-    description: '基于Vue3和Node.js开发的校园信息管理平台，包含学生管理、课程安排、成绩查询等功能模块。',
+    title: '社团官网',
+    description: '基于Vue3和Nuxt.js开发的社团官网，拥有现代化的页面和流畅的动画，响应式设计。',
     image: '/images/官网截图.webp',
     category: 'Web应用',
-    date: '2024-12',
-    technologies: ['Vue3', 'Node.js', 'MongoDB', 'Tailwind CSS'],
+    author: 'rice-awa',
+    date: '2025-01',
+    technologies: ['Vue3', 'Nuxt.js', 'Tailwind CSS'],
     links: [
-      { label: '查看演示', url: 'https://demo.example.com' },
-      { label: 'GitHub', url: 'https://github.com/example' }
+      { label: '查看演示', url: 'https://demo.rice-awa.top' },
+      { label: 'GitHub', url: 'https://github.com/rice-awa/rice-nuxt' }
     ]
   },
   {
@@ -207,6 +222,7 @@ const works = [
     description: '使用Blender和Three.js创建的交互式3D建模教学平台，支持实时渲染和模型交互。',
     image: '/images/大社开展3D建模科普.webp',
     category: '3D设计',
+    author: '李四',
     date: '2024-11',
     technologies: ['Blender', 'Three.js', 'WebGL'],
     links: [
@@ -218,6 +234,7 @@ const works = [
     description: '为社团文化艺术节开发的互动小游戏，包含多个趣味关卡和排行榜功能。',
     image: '/images/开展社团文化艺术节小游戏.webp',
     category: '游戏开发',
+    author: '王五',
     date: '2024-10',
     technologies: ['Unity', 'C#', 'WebGL'],
     links: [
@@ -229,6 +246,7 @@ const works = [
     description: '面向初学者的交互式编程学习网站，提供实时代码编辑器和进度跟踪功能。',
     image: '/images/社员们正在学习编程知识.webp',
     category: '教育科技',
+    author: '赵六',
     date: '2024-09',
     technologies: ['React', 'Python', 'Docker'],
     links: [
@@ -240,6 +258,7 @@ const works = [
     description: '使用3D建模和打印技术制作的精美校徽模型，展现学校文化和技术创新。',
     image: '/images/校徽3D打印.png',
     category: '3D打印',
+    author: '钱七',
     date: '2024-08',
     technologies: ['Fusion 360', '3D打印', '后期处理'],
     links: [
@@ -251,6 +270,7 @@ const works = [
     description: '使用Cycles渲染引擎创作的高质量3D场景，展现先进的光照和材质技术。',
     image: '/images/新世纪Cycles.webp',
     category: '3D渲染',
+    author: '孙八',
     date: '2024-07',
     technologies: ['Blender', 'Cycles', 'Substance'],
     links: [
