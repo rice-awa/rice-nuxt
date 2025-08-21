@@ -26,23 +26,24 @@
           <div 
             v-for="(work, index) in works" 
             :key="index"
-            class="group cursor-pointer"
+            class="group cursor-pointer transform transition-transform duration-300 hover:scale-102"
             @click="openLightbox(index)"
           >
-            <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 active:scale-98 will-change-transform">
               <!-- 图片容器 -->
               <div class="relative overflow-hidden aspect-[4/3]">
                 <NuxtImg
                   :src="work.image"
                   :alt="work.title"
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  class="w-full h-full object-cover transform transition-transform duration-400 group-hover:scale-108 will-change-transform"
                   width="400"
                   height="300"
                   format="webp"
+                  loading="lazy"
                 />
                 <!-- 悬停遮罩 -->
-                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-500 flex items-center justify-center">
-                  <div class="opacity-0 group-hover:opacity-100 transform group-hover:scale-110 transition-all duration-500">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-opacity duration-300 flex items-center justify-center">
+                  <div class="opacity-0 group-hover:opacity-100 transform transition-opacity duration-300">
                     <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -70,90 +71,112 @@
     </main>
 
     <!-- 灯箱模态框 -->
-    <div 
-      v-if="lightboxVisible"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 backdrop-blur-sm"
-      @click="closeLightbox"
-    >
-      <div class="relative max-w-6xl w-full mx-4" @click.stop>
-        <!-- 关闭按钮 -->
-        <button
-          @click="closeLightbox"
-          class="absolute -top-12 right-0 text-white hover:text-blue-400 transition-colors duration-300 z-10"
-        >
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+    <Transition name="lightbox" mode="out-in">
+      <div
+        v-if="lightboxVisible"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-md will-change-opacity"
+        @click="closeLightbox"
+      >
+        <div class="relative max-w-6xl w-full mx-4 transform transition-transform duration-300 ease-out will-change-transform" @click.stop>
+          <!-- 导航按钮 -->
+          <button
+            @click.stop="navigateWork(-1)"
+            class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-200 group"
+          >
+            <svg class="w-6 h-6 transform transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          
+          <button
+            @click.stop="navigateWork(1)"
+            class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-200 group"
+          >
+            <svg class="w-6 h-6 transform transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
 
-        <!-- 灯箱内容 -->
-        <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
-          <div class="grid lg:grid-cols-2 gap-8 p-8">
-            <!-- 图片区域 -->
-            <div class="relative">
-              <NuxtImg
-                :src="currentWork.image"
-                :alt="currentWork.title"
-                class="w-full h-auto rounded-lg shadow-lg"
-                width="600"
-                height="400"
-                format="webp"
-              />
-            </div>
+          <!-- 关闭按钮 -->
+          <button
+            @click="closeLightbox"
+            class="absolute -top-12 right-0 text-white hover:text-blue-400 transition-colors duration-200 z-10 transform hover:scale-110"
+          >
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
 
-            <!-- 详细信息 -->
-            <div class="space-y-6">
-              <div>
-                <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-2">
-                  {{ currentWork.title }}
-                </h2>
-                <div class="flex items-center gap-4 mb-4">
-                  <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full dark:bg-blue-900 dark:text-blue-200">
-                    {{ currentWork.category }}
-                  </span>
-                  <span class="text-gray-500 text-sm">{{ currentWork.date }}</span>
-                </div>
-                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {{ currentWork.description }}
-                </p>
+          <!-- 灯箱内容 -->
+          <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl transform transition-transform duration-300 ease-out will-change-transform">
+            <div class="grid lg:grid-cols-2 gap-8 p-8">
+              <!-- 图片区域 -->
+              <div class="relative group">
+                <NuxtImg
+                  :src="currentWork.image"
+                  :alt="currentWork.title"
+                  class="w-full h-auto rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-102 will-change-transform"
+                  width="600"
+                  height="400"
+                  format="webp"
+                  preload
+                />
               </div>
 
-              <!-- 技术栈 -->
-              <div v-if="currentWork.technologies">
-                <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-3">技术栈</h3>
-                <div class="flex flex-wrap gap-2">
-                  <span 
-                    v-for="(tech, techIndex) in currentWork.technologies"
-                    :key="techIndex"
-                    class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full dark:bg-gray-700 dark:text-gray-300"
-                  >
-                    {{ tech }}
-                  </span>
+              <!-- 详细信息 -->
+              <div class="space-y-6">
+                <div>
+                  <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-2">
+                    {{ currentWork.title }}
+                  </h2>
+                  <div class="flex items-center gap-4 mb-4">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full dark:bg-blue-900 dark:text-blue-200">
+                      {{ currentWork.category }}
+                    </span>
+                    <span class="text-gray-500 text-sm">{{ currentWork.date }}</span>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {{ currentWork.description }}
+                  </p>
                 </div>
-              </div>
 
-              <!-- 项目链接 -->
-              <div v-if="currentWork.links" class="pt-4">
-                <div class="flex gap-4">
-                  <a
-                    v-for="(link, linkIndex) in currentWork.links"
-                    :key="linkIndex"
-                    :href="link.url"
-                    target="_blank"
-                    class="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300"
-                  >
-                    <span>{{ link.label }}</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
+                <!-- 技术栈 -->
+                <div v-if="currentWork.technologies">
+                  <h3 class="text-lg font-semibold text-gray-800 dark:text-white mb-3">技术栈</h3>
+                  <div class="flex flex-wrap gap-2">
+                    <span 
+                      v-for="(tech, techIndex) in currentWork.technologies"
+                      :key="techIndex"
+                      class="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full dark:bg-gray-700 dark:text-gray-300"
+                    >
+                      {{ tech }}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- 项目链接 -->
+                <div v-if="currentWork.links" class="pt-4">
+                  <div class="flex gap-4">
+                    <a
+                      v-for="(link, linkIndex) in currentWork.links"
+                      :key="linkIndex"
+                      :href="link.url"
+                      target="_blank"
+                      class="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300"
+                    >
+                      <span>{{ link.label }}</span>
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Transition>
 
     <!-- 页脚 -->
     <AppFooter />
@@ -243,6 +266,19 @@ const currentWorkIndex = ref(0);
 // 当前作品
 const currentWork = computed(() => works[currentWorkIndex.value]);
 
+// 防抖函数
+const debounce = (func, wait) => {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
 // 打开灯箱
 const openLightbox = (index) => {
   currentWorkIndex.value = index;
@@ -255,6 +291,12 @@ const closeLightbox = () => {
   lightboxVisible.value = false;
   document.body.style.overflow = '';
 };
+
+// 导航作品（带防抖）
+const navigateWork = debounce((direction) => {
+  const newIndex = (currentWorkIndex.value + direction + works.length) % works.length;
+  currentWorkIndex.value = newIndex;
+}, 150);
 
 // 键盘事件监听
 onMounted(() => {
@@ -275,12 +317,6 @@ onMounted(() => {
     window.removeEventListener('keydown', handleKeydown);
   });
 });
-
-// 导航作品
-const navigateWork = (direction) => {
-  const newIndex = (currentWorkIndex.value + direction + works.length) % works.length;
-  currentWorkIndex.value = newIndex;
-};
 </script>
 
 <style scoped>
@@ -300,19 +336,49 @@ const navigateWork = (direction) => {
 }
 
 /* 灯箱入场动画 */
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.3s ease;
+.lightbox-enter-active {
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
-.v-enter-from,
-.v-leave-to {
+.lightbox-leave-active {
+  transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+}
+
+.lightbox-enter-from .relative.max-w-6xl {
   opacity: 0;
+  transform: scale(0.8) translateY(20px);
+}
+
+.lightbox-leave-to .relative.max-w-6xl {
+  opacity: 0;
+  transform: scale(0.9) translateY(-10px);
+}
+
+.lightbox-enter-from .fixed.inset-0 {
+  opacity: 0;
+}
+
+.lightbox-leave-to .fixed.inset-0 {
+  opacity: 0;
+}
+
+/* 性能优化：使用transform和opacity进行硬件加速 */
+.transform-gpu {
+  transform: translateZ(0);
+}
+
+/* 减少重绘和重排 */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
 }
 
 /* 图片缩放动画 */
 .group:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* 确保灯箱内容居中 */

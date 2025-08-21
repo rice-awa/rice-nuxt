@@ -11,15 +11,40 @@
         
         <!-- 桌面端导航 -->
         <nav class="hidden md:flex items-center space-x-8" role="navigation" aria-label="主导航">
+          <!-- 主页下拉菜单 -->
+          <div class="relative" @mouseenter="isDropdownOpen = true" @mouseleave="isDropdownOpen = false">
+            <NuxtLink
+              to="/"
+              class="text-gray-600 hover:text-blue-500 transition-all duration-300 text-sm font-medium nav-link dark:text-gray-300 dark:hover:text-blue-400 flex items-center"
+              @click="handleHomeClick">
+              <span>主页</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-300" :class="{ 'rotate-180': isDropdownOpen }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </NuxtLink>
+            
+            <!-- 下拉菜单内容 -->
+            <div
+              v-show="isDropdownOpen"
+              class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-out"
+              :class="{ 'opacity-100 translate-y-0': isDropdownOpen, 'opacity-0 -translate-y-2': !isDropdownOpen }">
+              <NuxtLink
+                v-for="(link, index) in dropdownLinks"
+                :key="index"
+                :to="link.href"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
+                @click="isDropdownOpen = false">
+                {{ link.text }}
+              </NuxtLink>
+            </div>
+          </div>
+          
           <NuxtLink
-            v-for="(link, index) in navLinks"
-            :key="index"
-            :to="link.href"
-            class="text-gray-600 hover:text-blue-500 transition-all duration-300 text-sm font-medium nav-link dark:text-gray-300 dark:hover:text-blue-400"
-            @click.prevent="scrollToSection(link.href)"
-            :class="{ 'cursor-pointer': link.isRoute }">
-            {{ link.text }}
+            to="/works"
+            class="text-gray-600 hover:text-blue-500 transition-all duration-300 text-sm font-medium nav-link dark:text-gray-300 dark:hover:text-blue-400">
+            作品展示
           </NuxtLink>
+          
           <ThemeToggle />
         </nav>
         
@@ -48,35 +73,35 @@
 // 导入ThemeToggle组件
 import ThemeToggle from '~/components/ui/ThemeToggle.vue';
 
-const navLinks = [
-  { text: '社团特色', href: '#features' },
-  { text: '近期活动', href: '#activities' },
-  { text: '发展历程', href: '#timeline' },
-  { text: '社团部门', href: '#departments' },
-  { text: '成果展示', href: '#success' },
-  { text: '加入我们', href: '#join' },
-  { text: '作品展示', href: '/works', isRoute: true },
-];
-
 const isMobileMenuOpen = useState('isMobileMenuOpen', () => false);
+const isDropdownOpen = ref(false);
+
+// 下拉菜单链接
+const dropdownLinks = [
+  { text: '社团特色', href: '/#features' },
+  { text: '近期活动', href: '/#activities' },
+  { text: '发展历程', href: '/#timeline' },
+  { text: '社团部门', href: '/#departments' },
+  { text: '成果展示', href: '/#success' },
+  { text: '加入我们', href: '/#join' },
+];
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 
-const scrollToSection = (href) => {
-  // 如果是路由链接，直接导航
-  if (href.startsWith('/')) {
-    navigateTo(href);
-    isMobileMenuOpen.value = false;
-    return;
+// 处理主页点击事件
+const handleHomeClick = (event) => {
+  // 如果下拉菜单是打开的，阻止默认行为，避免页面跳转
+  if (isDropdownOpen.value) {
+    event.preventDefault();
   }
-  
-  // 如果是页面内锚点链接
-  const el = document.querySelector(href);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' });
-    isMobileMenuOpen.value = false;
-  }
+  isDropdownOpen.value = false;
 };
+
+// 在路由变化时关闭下拉菜单
+const route = useRoute();
+watch(route, () => {
+  isDropdownOpen.value = false;
+});
 </script>
